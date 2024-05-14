@@ -18,4 +18,5 @@ class QuestionForm(FlaskForm):
     content = TextAreaField('Content', validators=[DataRequired()])
 
 class AnswerForm(wtforms.Form):
-    pass
+    content = TextAreaField('Content', validators=[DataRequired()])
+    question_id = IntegerField('Question ID', validators=[InputRequired()])
