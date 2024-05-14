@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="en">
+{% extends "base.html" %}
+
+{% block title %}Pet Hotel Booking{% endblock %}
+
+{% block content %}
+<link rel="stylesheet" href="static/css/event.css">
+
+<div class="container">
+    <!-- Latest Event Section -->
+    <div class="latest-event" id="latest-event">
+        <!-- Information about the latest event goes here -->
+        <!-- This part could be featured or highlighted in some way -->
+    </div>
+
+    <!-- Event List Section -->
+    <div class="event-list">
+        <!-- Replace with actual event items in production -->
+        <div class="event" onclick="window.location.href='event-detail.html';">
+            <!-- Event Content -->
+        </div>
+        <!-- Repeat for as many events as needed -->
+    </div>
+</div>
+
+<!-- Additional script for scrolling functionality if needed -->
+<script src="static/js/events.js"></script> <!-- Ensure the path to your JavaScript file is correct -->
+{% endblock %}
+</html>
