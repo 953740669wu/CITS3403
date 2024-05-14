@@ -1,20 +1,17 @@
-from flask import render_template, request, redirect, url_for, flash
+from flask import render_template, request, redirect, url_for, flash, get_flashed_messages
 from app import app, db
 from app.forms import LoginForm, StaffLoginForm
 from app.models import UserModel, QuestionModel, AnswerModel
-from flask_mail import Message
-from flask_login import logout_user
-from flask_login import login_required
-from flask_login import current_user
-from flask_login import login_user
+from flask_login import logout_user, login_required, current_user, login_user
 from app.forms import RegistrationForm, QuestionForm, AnswerForm
 from sqlalchemy import select
+from urllib.parse import urlsplit
 
 @app.route('/')
 @app.route('/index')
 def welcome():
     latest_question = QuestionModel.query.order_by(QuestionModel.create_time.desc()).first()
-    return render_template('welcome_page.html', latest_question = latest_question)
+    return render_template('welcome_page.html', latest_question=latest_question)
 
 
 @app.route('/')
@@ -37,7 +34,10 @@ def login():
             password = customer_login_form.password.data
             
             user = UserModel.query.filter_by(username=username).first()
-            if user is None or not user.check_password(password):
+            if user is None:
+                flash('User not registered.', 'error')
+                return redirect(url_for('login'))
+            if not user.check_password(password):
                 flash('Invalid username or password.', 'error')
                 return redirect(url_for('login'))
             
@@ -50,12 +50,14 @@ def login():
             return redirect(next_page)
         
         elif staff_login_form.validate_on_submit():
-            # Logic for staff login
-            staff_username = staff_login_form.staff_username.data  # Corrected attribute name
-            staff_password = staff_login_form.staff_password.data  # Corrected attribute name
+            staff_username = staff_login_form.staff_username.data
+            staff_password = staff_login_form.staff_password.data
 
             staff = UserModel.query.filter_by(username=staff_username).first()
-            if staff is None or not staff.check_password(staff_password):
+            if staff is None:
+                flash('Staff user not registered.', 'error')
+                return redirect(url_for('login'))
+            if not staff.check_password(staff_password):
                 flash('Invalid staff username or password.', 'error')
                 return redirect(url_for('login'))
             
@@ -67,8 +69,10 @@ def login():
                 next_page = url_for('index')
             return redirect(next_page)
 
-    return render_template('login.html', form=customer_login_form, staff_form=staff_login_form)
+    # Get flashed messages
+    messages = get_flashed_messages(with_categories=True)
 
+    return render_template('login.html', form=customer_login_form, staff_form=staff_login_form, messages=messages)
 
 @app.route('/sign_up', methods=['GET', 'POST'])
 def sign_up():
@@ -76,7 +80,6 @@ def sign_up():
         return redirect(url_for('index'))
     form = RegistrationForm()
     if form.validate_on_submit():
-        # Use UserModel instead of User
         user = UserModel(username=form.username.data, email=form.email.data)
         user.set_password(form.password.data)
         db.session.add(user)
@@ -113,7 +116,7 @@ def question_details(question_id):
 def search():
     q = request.args.get("q")
     questions = QuestionModel.query.filter(QuestionModel.title.contains(q)).all()
-    return render_template("forums.html", questions = questions)
+    return render_template("forums.html", questions=questions)
 
 @app.route("/public_question", methods=['GET', 'POST'])
 @login_required
@@ -134,17 +137,17 @@ def forum_p_page():
                     flash(f"错误在 {fieldName}: {err}")
     return render_template('public_question.html', form=form)
 
-@app.route("/answer/public", methods = ['POST'])
+@app.route("/answer/public", methods=['POST'])
 @login_required
 def public_answer():
-    form =AnswerForm(request.form)
+    form = AnswerForm(request.form)
     if form.validate():
         content = form.content.data
         question_id = form.question_id.data
-        answer = AnswerModel(content = content , question_id= question_id, author_id = current_user.id )
+        answer = AnswerModel(content=content, question_id=question_id, author_id=current_user.id)
         db.session.add(answer)
         db.session.commit()
-        return redirect(url_for("question_details", question_id = question_id))
+        return redirect(url_for("question_details", question_id=question_id))
     else:
         print(form.errors)
         return redirect(url_for("question_details", question_id=request.form.get("question_id")))
@@ -152,7 +155,6 @@ def public_answer():
 
 @app.route('/toys_page')
 def toys_page():
-    # Your logic for rendering the Toys page goes here
     return 'This is the toys page.'
 
 @app.route('/food_page')
@@ -177,3 +179,17 @@ def user(username):
         {'author': user, 'body': 'Test post #2'}
     ]
     return render_template('user.html', user=user, posts=posts)
+
+
+@app.route('/question/delete/<int:question_id>', methods=['POST'])
+@login_required
+def delete_question(question_id):
+    question = QuestionModel.query.get_or_404(question_id)
+    if question.author_id != current_user.id:
+        flash('You do not have permission to delete this question.', 'error')
+        return redirect(url_for('forum_page'))
+    
+    db.session.delete(question)
+    db.session.commit()
+    flash('Question deleted successfully.')
+    return redirect(url_for('forum_page'))
