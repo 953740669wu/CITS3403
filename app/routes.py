@@ -25,3 +25,9 @@ def forum_page():
 def question_details(question_id):
     question = QuestionModel.query.get_or_404(question_id)
     return render_template('question_details.html', question=question)
+
+@app.route("/search")
+def search():
+    q = request.args.get("q")
+    questions = QuestionModel.query.filter(QuestionModel.title.contains(q)).all()
+    return render_template("forums.html", questions = questions)
