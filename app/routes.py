@@ -6,5 +6,5 @@ from flask_login import logout_user
 from flask_login import login_required
 from flask_login import current_user
 from flask_login import login_user
-from app.forms import RegistrationForm, QuestionForm, AnswerForm
+#from app.forms import RegistrationForm, QuestionForm, AnswerForm
 from sqlalchemy import select
