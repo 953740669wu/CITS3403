@@ -5,13 +5,36 @@ from wtforms.validators import ValidationError, DataRequired, Email, EqualTo, Le
 from app.models import UserModel
 
 class LoginForm(FlaskForm):
-    pass
+    username = StringField('Username', validators=[DataRequired()])
+    password = PasswordField('Password', validators=[DataRequired()])
+    remember_me = BooleanField('Remember Me')
+    submit = SubmitField('Login')
 
 class StaffLoginForm(FlaskForm):
-    pass
+    staff_username = StringField('Staff Username', validators=[DataRequired()])
+    staff_password = PasswordField('Staff Password', validators=[DataRequired()])
+    remember_me = BooleanField('Remember Me')
+    submit = SubmitField('Login')
+
 
 class RegistrationForm(FlaskForm):
-    pass
+    username = StringField('Username', validators=[DataRequired()])
+    email = StringField('Email', validators=[DataRequired(), Email()])
+    password = PasswordField('Password', validators=[DataRequired()])
+    password2 = PasswordField(
+        'Repeat Password', validators=[DataRequired(), EqualTo('password')])
+    submit = SubmitField('Register')
+
+    def validate_username(self, username):
+        user = UserModel.query.filter_by(username=username.data).first()
+        if user is not None:
+            raise ValidationError('Please use a different username.')
+
+    def validate_email(self, email):
+        user = UserModel.query.filter_by(email=email.data).first()
+        if user is not None:
+            raise ValidationError('Please use a different email address.')
+        
 
 class QuestionForm(FlaskForm):
     title = StringField('Title', validators=[DataRequired()])

@@ -16,6 +16,82 @@ def welcome():
     latest_question = QuestionModel.query.order_by(QuestionModel.create_time.desc()).first()
     return render_template('welcome_page.html', latest_question = latest_question)
 
+
+@app.route('/')
+@app.route('/index')
+@login_required
+def index():
+    return render_template("index.html", title='Home Page', posts=posts)
+
+@app.route('/login', methods=['GET', 'POST'])
+def login():
+    if current_user.is_authenticated:
+        return redirect(url_for('index'))
+    
+    customer_login_form = LoginForm()
+    staff_login_form = StaffLoginForm()
+    
+    if request.method == 'POST':
+        if customer_login_form.validate_on_submit():
+            username = customer_login_form.username.data
+            password = customer_login_form.password.data
+            
+            user = UserModel.query.filter_by(username=username).first()
+            if user is None or not user.check_password(password):
+                flash('Invalid username or password.', 'error')
+                return redirect(url_for('login'))
+            
+            # Logic for successful customer login
+            flash('Customer login successful!')
+            login_user(user)
+            next_page = request.args.get('next')
+            if not next_page or urlsplit(next_page).netloc != '':
+                next_page = url_for('index')
+            return redirect(next_page)
+        
+        elif staff_login_form.validate_on_submit():
+            # Logic for staff login
+            staff_username = staff_login_form.staff_username.data  # Corrected attribute name
+            staff_password = staff_login_form.staff_password.data  # Corrected attribute name
+
+            staff = UserModel.query.filter_by(username=staff_username).first()
+            if staff is None or not staff.check_password(staff_password):
+                flash('Invalid staff username or password.', 'error')
+                return redirect(url_for('login'))
+            
+            # Logic for successful staff login
+            flash('Staff login successful!')
+            login_user(staff)
+            next_page = request.args.get('next')
+            if not next_page or urlsplit(next_page).netloc != '':
+                next_page = url_for('index')
+            return redirect(next_page)
+
+    return render_template('login.html', form=customer_login_form, staff_form=staff_login_form)
+
+
+@app.route('/sign_up', methods=['GET', 'POST'])
+def sign_up():
+    if current_user.is_authenticated:
+        return redirect(url_for('index'))
+    form = RegistrationForm()
+    if form.validate_on_submit():
+        # Use UserModel instead of User
+        user = UserModel(username=form.username.data, email=form.email.data)
+        user.set_password(form.password.data)
+        db.session.add(user)
+        db.session.commit()
+        flash('Congratulations, you are now a registered user!')
+        return redirect(url_for('login'))
+    return render_template('sign_up.html', title='Register', form=form)
+
+#Logout route
+@app.route('/logout')
+def logout():
+    logout_user()
+    return redirect(url_for('index'))
+
+
 @app.route('/forum_page')
 def forum_page():
     questions = QuestionModel.query.order_by(QuestionModel.create_time.desc()).all()
