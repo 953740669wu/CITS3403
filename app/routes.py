@@ -85,12 +85,19 @@ def sign_up():
         return redirect(url_for('login'))
     return render_template('sign_up.html', title='Register', form=form)
 
+@app.route('/forgot_password')
+def forgot_password():
+    return render_template('forgot_password.html')
+
 #Logout route
 @app.route('/logout')
 def logout():
     logout_user()
     return redirect(url_for('index'))
 
+@app.route('/event', methods=['GET'])
+def event_page():
+    return render_template('event_page.html')
 
 @app.route('/forum_page')
 def forum_page():
