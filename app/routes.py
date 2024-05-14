@@ -32,17 +32,21 @@ def search():
     questions = QuestionModel.query.filter(QuestionModel.title.contains(q)).all()
     return render_template("forums.html", questions = questions)
 
-@app.route("/answer/public", methods = ['POST'])
+@app.route("/public_question", methods=['GET', 'POST'])
 @login_required
-def public_answer():
-    form =AnswerForm(request.form)
-    if form.validate():
-        content = form.content.data
-        question_id = form.question_id.data
-        answer = AnswerModel(content = content , question_id= question_id, author_id = current_user.id )
-        db.session.add(answer)
-        db.session.commit()
-        return redirect(url_for("question_details", question_id = question_id))
-    else:
-        print(form.errors)
-        return redirect(url_for("question_details", question_id=request.form.get("question_id")))
+def forum_p_page():
+    form = QuestionForm()
+    if request.method == 'POST':
+        if form.validate_on_submit():
+            title = form.title.data
+            content = form.content.data
+            question = QuestionModel(title=title, content=content, author=current_user)
+            db.session.add(question)
+            db.session.commit()
+            flash('问题成功发布！')
+            return redirect('/')
+        else:
+            for fieldName, errorMessages in form.errors.items():
+                for err in errorMessages:
+                    flash(f"错误在 {fieldName}: {err}")
+    return render_template('public_question.html', form=form)
