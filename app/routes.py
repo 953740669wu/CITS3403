@@ -63,6 +63,21 @@ def login():
     return render_template('login.html', form=customer_login_form, staff_form=staff_login_form)
 
 
+@app.route('/sign_up', methods=['GET', 'POST'])
+def sign_up():
+    if current_user.is_authenticated:
+        return redirect(url_for('index'))
+    form = RegistrationForm()
+    if form.validate_on_submit():
+        # Use UserModel instead of User
+        user = UserModel(username=form.username.data, email=form.email.data)
+        user.set_password(form.password.data)
+        db.session.add(user)
+        db.session.commit()
+        flash('Congratulations, you are now a registered user!')
+        return redirect(url_for('login'))
+    return render_template('sign_up.html', title='Register', form=form)
+
 @app.route('/forum_page')
 def forum_page():
     questions = QuestionModel.query.order_by(QuestionModel.create_time.desc()).all()
