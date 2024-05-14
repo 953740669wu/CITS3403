@@ -142,3 +142,31 @@ def public_answer():
         print(form.errors)
         return redirect(url_for("question_details", question_id=request.form.get("question_id")))
 
+
+@app.route('/toys_page')
+def toys_page():
+    # Your logic for rendering the Toys page goes here
+    return 'This is the toys page.'
+
+@app.route('/food_page')
+def food_page():
+    return 'This is the food page.'
+
+@app.route('/health_page')
+def health_page():
+    return 'This is the health page.'
+
+@app.route('/hotel_page')
+def hotel_page():
+    return 'This is the hotel page.'
+
+
+@app.route('/user/<username>')
+@login_required
+def user(username):
+    user = db.session.execute(select(UserModel).where(UserModel.username == username)).fetchone()
+    posts = [
+        {'author': user, 'body': 'Test post #1'},
+        {'author': user, 'body': 'Test post #2'}
+    ]
+    return render_template('user.html', user=user, posts=posts)
