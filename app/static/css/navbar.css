@@ -1,0 +1,143 @@
+nav {
+    background: #05386B; /* Dark blue navbar */
+    color: #fff;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 4px 5%;
+}
+
+nav .logo{
+    display: flex;
+    align-items: center;
+    margin-left: -40px;
+}
+
+nav .logo img {
+    height: 50px; /* Adjust as needed to align with nav items */
+    vertical-align: middle; /* Aligns img vertically */
+}
+
+nav .logo a.staff-name {
+    color: white;
+    text-decoration: none;
+    margin-left: 20px; /* Space between the logo and the staff name */
+    padding: 20px 15px; /* Match the padding to align with other nav links */
+    display: flex; /* Ensures flex properties apply, though not necessary as it's an inline element */
+    align-items: center; /* Aligns vertically */
+    height: 50px; /* Ensures height matches other navigation elements */
+    border-radius: 50px; /* Rounded borders for hover effect */
+    transition: background-color 0.3s ease-in-out; /* Smooth transition for hover effect */
+}
+
+/* Hover effect */
+nav .logo a.staff-name:hover {
+    background-color: #5CDB95;  /* Change color on hover */
+}
+
+
+nav ul {
+    list-style: none;
+    display: flex;
+    align-items: center;
+    padding: 0;
+    margin: 0;
+}
+
+nav ul.nav-links {
+    list-style: none;
+    display: flex;
+    align-items: center;
+    padding: 0;
+    margin-left: auto; /* This will push the menu to the right */
+    margin-right: -40px; /* Adjust this value to increase or decrease the right-side spacing */
+}
+
+nav ul li {
+    position: relative;
+    margin: 0 1px; /* Adjust as needed */
+}
+
+nav ul li a, nav ul li.login a {
+    color: white;
+    text-decoration: none;
+    padding: 20px 15px; /* Adjust the padding to align text with the logo height */
+    display: flex;
+    align-items: center;
+    height: 50px; /* Align with the logo height */
+    transition: background-color 0.3s ease-in-out;
+    border-radius: 50px;
+}
+
+nav ul li a:hover {
+    background-color: #5CDB95; /* Semi-transparent white for oval background */
+    /* If you want a solid color on hover, use the color code instead of rgba value */
+}
+
+nav ul li:hover .dropdown-content {
+    display: block;
+}
+
+nav .dropdown-content {
+    display: none;
+    position: absolute;
+    background-color: #05386B;
+    width: 140px;
+    box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2);
+    z-index: 1;
+    border-radius: 20px; /* Oval shape */
+    overflow: hidden;
+    padding: 0; /* Padding for content inside */
+    top: 100%;
+    left: 0;
+}
+
+nav .dropdown-content a {
+    color: white;
+    padding: 10px 10px;
+    text-decoration: none;
+    display: flex; /* Ensures proper alignment */
+    align-items: center;
+    text-align: left;
+    transition: background-color 0.3s ease-in-out;
+    border-radius: 20px; /* Initial border-radius for oval effect */
+}
+
+nav .dropdown-content a:hover {
+    background-color: #5CDB95;
+}
+
+
+/* Popup Styles */
+.welcome-pop {
+    position: fixed;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    width: auto;
+    max-width: 80%;  /* Maximum width to avoid overly wide popups */
+    padding: 20px 40px;  /* Generous padding for a visually appealing look */
+    background-color: #5CDB95;  /* Soft green background color */
+    color: #FFFFFF;  /* White text color for contrast */
+    border: none;  /* No border for a cleaner look */
+    border-radius: 10px;  /* Rounded corners for a soft, modern appearance */
+    box-shadow: 0 6px 20px rgba(0, 0, 0, 0.2);  /* Subtle shadow for depth */
+    text-align: center;  /* Center-aligns the text */
+    display: none;  /* Initially hidden */
+    z-index: 1050;  /* High z-index to ensure it's above other content */
+    font-size: 1.5rem;  /* Larger font size for better readability */
+    font-weight: normal;  /* Normal font weight for a softer appearance */
+    line-height: 1.5;  /* Improved line height for better readability */
+    animation: fadeIn 1s ease-in-out;  /* Applies a fade-in animation with smooth start and end */
+}
+
+/* Animation for fade-in effect using ease-in-out for a smoother transition */
+@keyframes fadeIn {
+    0% { opacity: 0; }
+    100% { opacity: 1; }
+}
+
+
+.welcome-pop {
+    animation: fadeIn 1s; /* Applies the fade-in animation */
+}
