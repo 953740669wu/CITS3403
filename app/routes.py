@@ -15,3 +15,8 @@ from sqlalchemy import select
 def welcome():
     latest_question = QuestionModel.query.order_by(QuestionModel.create_time.desc()).first()
     return render_template('welcome_page.html', latest_question = latest_question)
+
+@app.route('/forum_page')
+def forum_page():
+    questions = QuestionModel.query.order_by(QuestionModel.create_time.desc()).all()
+    return render_template('forums.html', questions=questions)
