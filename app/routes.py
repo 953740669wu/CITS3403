@@ -91,6 +91,10 @@ def logout():
     logout_user()
     return redirect(url_for('index'))
 
+@app.route('/forgot_password')
+def forgot_password():
+    return render_template('forgot_password.html')
+
 @app.route('/event', methods=['GET'])
 def event_page():
     return render_template('event_page.html')
