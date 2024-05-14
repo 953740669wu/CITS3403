@@ -16,6 +16,13 @@ def welcome():
     latest_question = QuestionModel.query.order_by(QuestionModel.create_time.desc()).first()
     return render_template('welcome_page.html', latest_question = latest_question)
 
+
+@app.route('/')
+@app.route('/index')
+@login_required
+def index():
+    return render_template("index.html", title='Home Page', posts=posts)
+
 @app.route('/login', methods=['GET', 'POST'])
 def login():
     if current_user.is_authenticated:
