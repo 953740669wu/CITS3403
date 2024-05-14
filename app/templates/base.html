@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>{% block title %}Pet Hotel Booking{% endblock %}</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/navbar.css') }}">
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/welcome.css') }}">
+</head>
+<body>
+
+<header>
+    <nav>
+        <div class="logo">
+            <img src="{{ url_for('static', filename='logo1.jpg') }}" alt="Pet Hotel Logo">
+        </div>
+        <ul class="nav-links">
+            <li><a href="/">Home</a></li>
+            <li><a href="{{ url_for('event_page') }}">Event</a></li>
+            <li><a href="{{ url_for('forum_page') }}">Forum</a></li>
+            <li>
+                <a href="#">Products</a>
+                <div class="dropdown-content">
+                    <a href="{{ url_for('toys_page') }}">Toys</a>
+                    <a href="{{ url_for('food_page') }}">Food</a>
+                    <a href="{{ url_for('health_page') }}">Health</a>
+                    <a href="{{ url_for('hotel_page') }}">Hotel</a>
+                </div>
+            </li>
+            {% if current_user.is_authenticated %}
+                <li class="nav-item">
+                    <a href="{{ url_for('user', username=current_user.username) }}" class="username-link">{{ current_user.username }}</a>
+                </li>
+                <li class="logout"><a href="{{ url_for('logout') }}">logout</a></li>
+            {% else %}
+                <li class="login"><a href="{{ url_for('login') }}">Login</a></li>
+            {% endif %}
+        </ul>
+    </nav>
+</header>
+
+{% block content %}
+<!-- This block will be overridden by child templates -->
+{% endblock %}
+
+<footer>
+    <p>© 2024 PetPals Forum. All rights reserved.</p>
+</footer>
+
+<script src="static/js/navbar.js"></script>
+</body>
+</html>
