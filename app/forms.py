@@ -11,7 +11,11 @@ class LoginForm(FlaskForm):
     submit = SubmitField('Login')
 
 class StaffLoginForm(FlaskForm):
-    pass
+    staff_username = StringField('Staff Username', validators=[DataRequired()])
+    staff_password = PasswordField('Staff Password', validators=[DataRequired()])
+    remember_me = BooleanField('Remember Me')
+    submit = SubmitField('Login')
+
 
 class RegistrationForm(FlaskForm):
     pass
