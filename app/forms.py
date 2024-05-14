@@ -12,8 +12,11 @@ class StaffLoginForm(FlaskForm):
 
 class RegistrationForm(FlaskForm):
     pass
+
 class QuestionForm(FlaskForm):
-    pass
+    title = StringField('Title', validators=[DataRequired()])
+    content = TextAreaField('Content', validators=[DataRequired()])
 
 class AnswerForm(wtforms.Form):
-    pass
+    content = TextAreaField('Content', validators=[DataRequired()])
+    question_id = IntegerField('Question ID', validators=[InputRequired()])
