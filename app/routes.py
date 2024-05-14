@@ -85,6 +85,13 @@ def sign_up():
         return redirect(url_for('login'))
     return render_template('sign_up.html', title='Register', form=form)
 
+#Logout route
+@app.route('/logout')
+def logout():
+    logout_user()
+    return redirect(url_for('index'))
+
+
 @app.route('/forum_page')
 def forum_page():
     questions = QuestionModel.query.order_by(QuestionModel.create_time.desc()).all()
