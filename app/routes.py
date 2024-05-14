@@ -9,3 +9,9 @@ from flask_login import current_user
 from flask_login import login_user
 from app.forms import RegistrationForm, QuestionForm, AnswerForm
 from sqlalchemy import select
+
+@app.route('/')
+@app.route('/index')
+def welcome():
+    latest_question = QuestionModel.query.order_by(QuestionModel.create_time.desc()).first()
+    return render_template('welcome_page.html', latest_question = latest_question)
