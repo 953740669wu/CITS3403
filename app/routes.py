@@ -159,3 +159,14 @@ def health_page():
 @app.route('/hotel_page')
 def hotel_page():
     return 'This is the hotel page.'
+
+
+@app.route('/user/<username>')
+@login_required
+def user(username):
+    user = db.session.execute(select(UserModel).where(UserModel.username == username)).fetchone()
+    posts = [
+        {'author': user, 'body': 'Test post #1'},
+        {'author': user, 'body': 'Test post #2'}
+    ]
+    return render_template('user.html', user=user, posts=posts)
