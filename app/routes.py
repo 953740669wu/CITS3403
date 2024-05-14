@@ -20,3 +20,8 @@ def welcome():
 def forum_page():
     questions = QuestionModel.query.order_by(QuestionModel.create_time.desc()).all()
     return render_template('forums.html', questions=questions)
+
+@app.route('/question/<int:question_id>')
+def question_details(question_id):
+    question = QuestionModel.query.get_or_404(question_id)
+    return render_template('question_details.html', question=question)
