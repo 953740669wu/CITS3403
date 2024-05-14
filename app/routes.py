@@ -91,6 +91,9 @@ def logout():
     logout_user()
     return redirect(url_for('index'))
 
+@app.route('/event', methods=['GET'])
+def event_page():
+    return render_template('event_page.html')
 
 @app.route('/forum_page')
 def forum_page():
