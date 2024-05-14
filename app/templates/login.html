@@ -1,0 +1,60 @@
+{% extends "base.html" %}
+
+{% block title %}Login{% endblock %}
+
+{% block content %}
+<div class="login-container">
+    <div class="login-section">
+        <h2>Customer Login</h2>
+        <form id="customer-login" action="{{ url_for('login') }}" method="post">
+            {{ form.csrf_token }}
+            <p>
+                {{ form.username.label }}<br>
+                {{ form.username(size=32) }}<br>
+                {% for error in form.username.errors %}
+                    <span style="color: red;">{{ error }}</span><br>
+                {% endfor %}
+            </p>
+            <p>
+                {{ form.password.label }}<br>
+                {{ form.password(size=32) }}<br>
+                {% for error in form.password.errors %}
+                    <span style="color: red;">{{ error }}</span><br>
+                {% endfor %}
+            </p>
+            <p>{{ form.remember_me() }} {{ form.remember_me.label }}</p>
+            <p><button class="custom-button" type="submit">Login</button></p>
+        </form>
+        <div class="login-links">
+            <a href="{{ url_for('forgot_password') }}">Forgot Password</a>
+            <a href="{{ url_for('sign_up') }}">Sign Up</a>
+        </div>
+    </div>
+    
+    <div class="login-section">
+        <h2>Staff Login</h2>
+        <form id="staff-login" action="{{ url_for('login') }}" method="post">
+            {{ staff_form.csrf_token }}
+            <p>
+                {{ staff_form.staff_username.label }}<br>
+                {{ staff_form.staff_username(size=32) }}<br>
+                {% for error in staff_form.staff_username.errors %}
+                    <span style="color: red;">{{ error }}</span><br>
+                {% endfor %}
+            </p>
+            <p>
+                {{ staff_form.staff_password.label }}<br>
+                {{ staff_form.staff_password(size=32) }}<br>
+                {% for error in staff_form.staff_password.errors %}
+                    <span style="color: red;">{{ error }}</span><br>
+                {% endfor %}
+            </p>
+            <p>{{ staff_form.remember_me() }} {{ staff_form.remember_me.label }}</p>
+            <p><button class="custom-button" type="submit">Login</button></p>
+        </form>
+        <div class="login-links">
+            <a href="{{ url_for('forgot_password') }}">Forgot Password</a>
+        </div>
+    </div>
+</div>
+{% endblock %}
