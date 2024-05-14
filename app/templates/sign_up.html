@@ -1,0 +1,47 @@
+{% extends "base.html" %}
+
+{% block title %}Sign Up{% endblock %}
+
+{% block content %}
+<div class="login-container">
+    <div class="login-section">
+        <h2>User Sign Up</h2>
+        <form action="{{ url_for('sign_up') }}" method="post">
+            {{ form.hidden_tag() }}
+            <p>
+                {{ form.username.label }}<br>
+                {{ form.username(size=32) }}<br>
+                {% for error in form.username.errors %}
+                <span style="color: red;">[{{ error }}]</span>
+                {% endfor %}
+            </p>
+            <p>
+                {{ form.email.label }}<br>
+                {{ form.email(size=64) }}<br>
+                {% for error in form.email.errors %}
+                <span style="color: red;">[{{ error }}]</span>
+                {% endfor %}
+            </p>
+            <p>
+                {{ form.password.label }}<br>
+                {{ form.password(size=32) }}<br>
+                {% for error in form.password.errors %}
+                <span style="color: red;">[{{ error }}]</span>
+                {% endfor %}
+            </p>
+            <p>
+                {{ form.password2.label }}<br>
+                {{ form.password2(size=32) }}<br>
+                {% for error in form.password2.errors %}
+                <span style="color: red;">[{{ error }}]</span>
+                {% endfor %}
+            </p>
+            <p><button class="custom-button" type="submit">Register</button></p>
+        </form>
+        
+        <div class="login-links">
+            <a href="{{ url_for('forgot_password') }}">Forgot Password</a>
+        </div>
+    </div>
+</div>
+{% endblock %}
