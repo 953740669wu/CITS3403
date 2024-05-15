@@ -4,24 +4,26 @@
 
 {% block content %}
 <div class="questions-container">
+    <h1>User: {{ current_user.username }}</h1>
+    <img src="https://www.gravatar.com/avatar/{{ current_user.avatar_hash }}?d=identicon&s=100" alt="Avatar" class="avatar">
     <h2>Published Questions</h2>
     <div class="mb-3">
-        <a href="{{ url_for('forum_p_page') }}" class="btn btn-primary">Post article</a>
+        Post article
     </div>
     {% if questions %}
         <ul class="questions-list">
         {% for question in questions %}
             <li class="question-item">
                 <h3>{{ question.title }}</h3>
-                <p>{{ question.content[:150] }}...</p >
-                <p>Posted by {{ question.author.username }} on {{ question.create_time.strftime('%Y-%m-%d %H:%M') }}</p >
+                <p>{{ question.content[:150] }}...</p>
+                <p>Posted by {{ question.author.username }} on {{ question.create_time.strftime('%Y-%m-%d %H:%M') }}</p>
                 Read more
                 <hr>
             </li>
         {% endfor %}
         </ul>
     {% else %}
-        <p>No Article found.</p >
+        <p>No Article found.</p>
     {% endif %}
 </div>
 {% endblock %}

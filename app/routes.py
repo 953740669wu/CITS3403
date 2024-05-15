@@ -173,12 +173,10 @@ def hotel_page():
 @app.route('/user/<username>')
 @login_required
 def user(username):
-    user = db.session.execute(select(UserModel).where(UserModel.username == username)).fetchone()
-    posts = [
-        {'author': user, 'body': 'Test post #1'},
-        {'author': user, 'body': 'Test post #2'}
-    ]
-    return render_template('user.html', user=user, posts=posts)
+    user = UserModel.query.filter_by(username=username).first_or_404()
+    questions = QuestionModel.query.filter_by(author_id=user.id).order_by(QuestionModel.create_time.desc()).all()
+    return render_template('my_questions.html', user=user, questions=questions)
+
 
 @app.route('/my_questions', methods=['GET'])
 @login_required
