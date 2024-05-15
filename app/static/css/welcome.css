@@ -22,13 +22,13 @@ body {
     color: #05386B; /* Text color to match the nav bar for consistency */
 }
 
-.latest-articles, .upcoming-events {
+.latest-article, .upcoming-events { /* ÐÞ¸ÄÀàÃû */
     padding: 20px;
     text-align: center;
     border-top: 1px solid #eaeaea; /* subtle border to visually separate sections */
 }
 
-.latest-articles h2, .upcoming-events h2 {
+.latest-article h2, .upcoming-events h2 {
     color: #05386B;
     margin-bottom: 15px;
 }
@@ -42,9 +42,10 @@ body {
 }
 
 /* Maintain consistency in the text color for content */
-.latest-articles p, .upcoming-events p {
+.latest-article p, .upcoming-events p {
     color: #05386B;
 }
+
 
 /* Additional responsive styling as needed for smaller screens */
 @media (max-width: 768px) {
