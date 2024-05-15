@@ -180,6 +180,11 @@ def user(username):
     ]
     return render_template('user.html', user=user, posts=posts)
 
+@app.route('/my_questions', methods=['GET'])
+@login_required
+def my_questions():
+    questions = QuestionModel.query.filter_by(author_id=current_user.id).order_by(QuestionModel.create_time.desc()).all()
+    return render_template('my_questions.html', questions=questions)
 
 @app.route('/question/delete/<int:question_id>', methods=['POST'])
 @login_required
