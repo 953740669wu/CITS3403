@@ -1,0 +1,102 @@
+h2,h1{
+    color: #05386B;
+}
+
+/* General styling for profile container and elements */
+.profile-container {
+    max-width: 800px; /* Control the width of the container */
+    margin: 20px auto; /* Center the container */
+    padding: 20px;
+    background-color: #fff; /* White background for readability */
+    border-radius: 8px; /* Rounded corners for a modern look */
+    box-shadow: 0 2px 10px rgba(0,0,0,0.1); /* Subtle shadow for depth */
+}
+
+/* Styling for the user's avatar and name */
+.profile-header {
+    display: flex;
+    align-items: center; /* Align the items vertically */
+    padding-bottom: 20px;
+    margin-bottom: 20px;
+    border-bottom: 2px solid #eee; /* Subtle separation from content */
+}
+
+.profile-header h1{
+    color: #05386B;
+}
+
+.avatar {
+    width: 100px; /* Fixed size for the avatar */
+    height: 100px;
+    border-radius: 50%; /* Make the avatar a circle */
+    margin-right: 20px; /* Space between avatar and username */
+}
+
+.user-name {
+    font-size: 24px; /* Larger font size for visibility */
+    color: #333; /* Darker text for emphasis */
+}
+
+/* Styling for the user's posted questions section */
+.questions-container {
+    margin-top: 20px;
+}
+
+.questions-list {
+    list-style: none; /* No bullet points */
+    padding: 0;
+}
+
+.question-item {
+    padding: 15px;
+    border-bottom: 1px solid #eee; /* Separator between items */
+}
+
+.question-item:last-child {
+    border-bottom: none; /* Remove border from the last item */
+}
+
+.question-item h3 {
+    font-size: 20px; /* Larger font size for question titles */
+    margin-bottom: 5px;
+}
+
+.question-item p {
+    font-size: 16px; /* Smaller font size for details */
+    color: #666; /* Lighter grey for less emphasis */
+    line-height: 1.4; /* More readable line spacing */
+}
+
+.question-item a {
+    color: #007BFF; /* Link color */
+    text-decoration: none; /* No underline */
+}
+
+.question-item a:hover {
+    text-decoration: underline; /* Underline on hover */
+}
+
+/* No content message */
+.no-content {
+    text-align: center; /* Center the message if no content */
+    color: #888; /* Lighter text color */
+    font-size: 18px;
+}
+
+/* Button or link for posting new content */
+.post-article {
+    display: block;
+    text-align: center;
+    margin-top: 20px;
+    padding: 10px 20px;
+    background-color: #5CDB95; /* Green background */
+    color: white;
+    border: none;
+    border-radius: 5px;
+    text-decoration: none; /* Remove underline from link */
+    font-size: 16px;
+}
+
+.post-article:hover {
+    background-color: #53b485; /* Darker green on hover */
+}
