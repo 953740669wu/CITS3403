@@ -6,27 +6,20 @@
     <title>{% block title %}Pet Hotel Booking{% endblock %}</title>
     <link rel="stylesheet" href="{{ url_for('static', filename='css/navbar.css') }}">
     <link rel="stylesheet" href="{{ url_for('static', filename='css/welcome.css') }}">
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/login.css') }}">   
 </head>
 <body>
 
 <header>
     <nav>
         <div class="logo">
-            <img src="{{ url_for('static', filename='logo1.jpg') }}" alt="Pet Hotel Logo">
+            <img src="{{ url_for('static', filename='images/logo1.jpg') }}" alt="Pet Hotel Logo">
         </div>
         <ul class="nav-links">
             <li><a href="/">Home</a></li>
             <li><a href="{{ url_for('event_page') }}">Event</a></li>
             <li><a href="{{ url_for('forum_page') }}">Forum</a></li>
-            <li>
-                <a href="#">Products</a>
-                <div class="dropdown-content">
-                    <a href="{{ url_for('toys_page') }}">Toys</a>
-                    <a href="{{ url_for('food_page') }}">Food</a>
-                    <a href="{{ url_for('health_page') }}">Health</a>
-                    <a href="{{ url_for('hotel_page') }}">Hotel</a>
-                </div>
-            </li>
+
             {% if current_user.is_authenticated %}
                 <li class="nav-item">
                     <a href="{{ url_for('user', username=current_user.username) }}" class="username-link">{{ current_user.username }}</a>

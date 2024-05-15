@@ -3,6 +3,7 @@ from flask_login import UserMixin
 from werkzeug.security import generate_password_hash, check_password_hash
 from datetime import datetime
 from sqlalchemy import Column, DateTime
+import hashlib
 
 class UserModel(UserMixin, db.Model):
     __tablename__ = 'user'
@@ -18,6 +19,10 @@ class UserModel(UserMixin, db.Model):
 
     def check_password(self, password):
         return check_password_hash(self.password_hash, password)
+    
+    def avatar(self, size=200):
+        digest = hashlib.md5(self.email.lower().encode('utf-8')).hexdigest()
+        return f'https://avatars.dicebear.com/api/identicon/{digest}.svg?size={size}'
 
 
 @login_manager.user_loader
