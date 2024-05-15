@@ -2,6 +2,9 @@
 
 {% block content %}
     <h1>User: {{ current_user.username }}</h1>
+    <h2>
+        <a href ='/my_questions'>Check my article</a>
+    </h2>
     <hr>
     {% for post in posts %}
     <p>
