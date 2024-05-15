@@ -6,7 +6,7 @@
 <div class="questions-container">
     <h2>Published Questions</h2>
     <div class="mb-3">
-        Post article
+        <a href="{{ url_for('forum_p_page') }}" class="btn btn-primary">Post article</a>
     </div>
     {% if questions %}
         <ul class="questions-list">
