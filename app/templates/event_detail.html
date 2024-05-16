@@ -1,0 +1,109 @@
+<!DOCTYPE html>
+<html lang="en">
+{% extends "base.html" %}
+
+{% block title %}Event Details{% endblock %}
+
+{% block content %}
+
+    <style>
+        .flex-container {
+            display: flex;
+        }
+
+        .left-column {
+            flex: 3;
+            padding-right: 20px;
+        }
+
+        .right-column {
+            flex: 1;
+            padding-left: 20px;
+        }
+    </style>
+
+<body>
+    <div class="flex-container">
+        <div class="left-column">
+            <div style="text-align:center;margin:20px auto">
+                <h2 style="margin:auto">{{ event.title }}</h2>
+            </div>
+            <p>
+            {{ event.description | safe }}
+            </p>
+        </div>
+        <div class="right-column">
+            <div class="layui-card">
+                <div class="layui-card-body">
+<p><a href="javascript:history.back();" class="layui-btn layui-btn-radius layui-bg-red">Back</a></p>
+
+<p><i class="layui-icon layui-icon-location"></i> Location: <span style="color: #009688;">{{ event.location }}</span></p>
+<p><i class="layui-icon layui-icon-username"></i> Author: <span style="color: #FF5722;">{{ event.author.username }}</span></p>
+<p><i class="layui-icon layui-icon-time"></i> Create Time: <span style="color: #5FB878;">{{ event.create_time.strftime('%Y-%m-%d %H:%M:%S') }}</span></p>
+<p><i class="layui-icon layui-icon-date"></i> Event Time: <span style="color: #FFB800;">{{ event.event_time.strftime('%Y-%m-%d %H:%M:%S') }}</span></p>
+                   <div class="layui-btn-container" style="margin-top:10px">
+                        <button class="layui-btn layui-btn-sm layui-btn-danger" id="likeBtn" data-event-id="{{ event.id }}">Like</button>
+                        <button class="layui-btn layui-btn-sm layui-bg-gray commentBtn" data-event-id="{{ event.id }}">Comment</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script src="https://cdn.staticfile.org/layui/2.5.7/layui.js"></script>
+    <script>
+        layui.use(["jquery","layer"],function(){
+            var $ = layui.jquery;
+            var layer = layui.layer;
+            $("#likeBtn").click(function(){
+                var event_id = $(this).data('event-id');
+                $.ajax({
+                    url: '/like_event/' + event_id,
+                    type: 'POST',
+                    success: function(response){
+                        if(response.status == 'success'){
+                            layer.alert('Event liked successfully.');
+                        } else {
+                            layer.alert(response.message);
+                        }
+                    },
+                    error: function(xhr, status, error){
+                        layer.alert('An error occurred while processing your request.');
+                    }
+                });
+            });
+
+            // 评论按钮点击事件
+            $(".commentBtn").click(function () {
+                var event_id = $(this).data('event-id');
+                layer.prompt({
+                    formType: 2,
+                    title: 'Comment',
+                    area: ['300px', '150px']
+                }, function (value, index, elem) {
+                    $.ajax({
+                        url: '/comment',
+                        type: 'POST',
+                        contentType: 'application/json',
+                        data: JSON.stringify({ event_id: event_id, content: value }),
+                        success: function (response) {
+                            if(response.status == 'success'){
+                                layer.alert('Comment added successfully.');
+                                layer.close(index);
+                            } else {
+                                layer.alert(response.message);
+                            }
+                        },
+                        error: function (xhr, status, error) {
+                            layer.alert('An error occurred while processing your request.');
+                        }
+                    });
+                });
+            });
+        });
+    </script>
+
+</body>
+
+{% endblock %}
+</html>

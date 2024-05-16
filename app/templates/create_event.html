@@ -1,0 +1,93 @@
+<!DOCTYPE html>
+<html lang="en">
+{% extends "base.html" %}
+
+{% block title %}Pet Hotel Booking{% endblock %}
+
+{% block content %}
+
+    <link rel="stylesheet" href="https://cdn.staticfile.org/layui/2.5.7/css/layui.css" type="text/css" />
+    <script type="text/javascript" src="https://cdn.staticfile.org/layui/2.5.7/layui.js">
+    </script>
+
+<body>
+    <div class="layui-container">
+        <div style="text-align:center;margin:20px auto">
+        <h2 style="margin:auto">Create Event</h2>
+        </div>
+        <div class="layui-row">
+            <div class="layui-col-md6 layui-col-md-offset3">
+                <form class="layui-form" method="POST" action="">
+                    {{ form.hidden_tag() }}
+                    <div class="layui-form-item">
+                        <label class="layui-form-label">{{ form.title.label }}</label>
+                        <div class="layui-input-block">
+                            {{ form.title(class="layui-input") }}
+                        </div>
+                    </div>
+                    <div class="layui-form-item">
+                        <label class="layui-form-label">{{ form.location.label }}</label>
+                        <div class="layui-input-block">
+                            {{ form.location(class="layui-input") }}
+                        </div>
+                    </div>
+                    <div class="layui-form-item">
+                        <label class="layui-form-label">{{ form.description.label }}</label>
+                        <div class="layui-input-block">
+                            <textarea class="layui-textarea" id="description" name="description"></textarea>
+                        </div>
+                    </div>
+                    <div class="layui-form-item">
+                        <label class="layui-form-label">{{ form.event_time.label }}</label>
+                        <div class="layui-input-block">
+                            {{ form.event_time(id="event_time", class="layui-input") }}
+                        </div>
+                    </div>
+                    <div class="layui-form-item">
+                        <div class="layui-input-block">
+                            {{ form.submit(class="layui-btn") }}
+                        </div>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+    <script>
+        layui.use(['form', 'laydate', 'layedit'], function(){
+            var form = layui.form;
+            var laydate = layui.laydate;
+            var layedit = layui.layedit;
+            
+            // Initialize date and time picker
+            laydate.render({
+                elem: '#event_time',
+                type: 'datetime',
+                format: 'yyyy-MM-dd HH:mm:ss'
+            });
+            layedit.set({
+                uploadImage: {
+                    url: '/upload_image', // Specify the upload image interface
+                    type: 'POST' // Default is post
+                }
+            });
+
+            // Initialize the layedit editor
+            var descriptionIndex = layedit.build('description', {
+                tool: [
+                    'strong', 'italic', 'underline', 'del', '|',
+                    'left', 'center', 'right', '|',
+                    'link', 'unlink', 'image'
+                ]
+
+            });
+
+            // Override form submission to include layedit content
+            form.on('submit', function(){
+                var content = layedit.getContent(descriptionIndex);
+                document.getElementById('description').value = content;
+                return true;
+            });
+        });
+    </script>
+</body>
+{% endblock %}
