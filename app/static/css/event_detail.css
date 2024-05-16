@@ -1,0 +1,163 @@
+/* Reset some default styles */
+body, h1, h2, p, ul {
+    margin: 0;
+    padding: 0;
+}
+
+body {
+    font-family: Arial, sans-serif;
+    line-height: 1.6;
+    background-color: #ffffff; /* White background */
+}
+
+nav {
+    background: #05386B; /* Dark blue navbar */
+    color: #fff;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 4px 5%;
+}
+
+nav .logo{
+    display: flex;
+    align-items: center;
+    margin-left: -40px;
+}
+
+nav .logo img {
+    height: 50px; /* Adjust as needed to align with nav items */
+    vertical-align: middle; /* Aligns img vertically */
+}
+
+nav .logo a.staff-name {
+    color: white;
+    text-decoration: none;
+    margin-left: 20px; /* Space between the logo and the staff name */
+    padding: 20px 15px; /* Match the padding to align with other nav links */
+    display: flex; /* Ensures flex properties apply, though not necessary as it's an inline element */
+    align-items: center; /* Aligns vertically */
+    height: 50px; /* Ensures height matches other navigation elements */
+    border-radius: 50px; /* Rounded borders for hover effect */
+    transition: background-color 0.3s ease-in-out; /* Smooth transition for hover effect */
+}
+
+/* Hover effect */
+nav .logo a.staff-name:hover {
+    background-color: #5CDB95;  /* Change color on hover */
+}
+
+
+nav ul {
+    list-style: none;
+    display: flex;
+    align-items: center;
+    padding: 0;
+    margin: 0;
+}
+
+nav ul.nav-links {
+    list-style: none;
+    display: flex;
+    align-items: center;
+    padding: 0;
+    margin-left: auto; /* This will push the menu to the right */
+    margin-right: -40px; /* Adjust this value to increase or decrease the right-side spacing */
+}
+
+nav ul li {
+    position: relative;
+    margin: 0 1px; /* Adjust as needed */
+}
+
+nav ul li a, nav ul li.login a {
+    color: white;
+    text-decoration: none;
+    padding: 20px 15px; /* Adjust the padding to align text with the logo height */
+    display: flex;
+    align-items: center;
+    height: 50px; /* Align with the logo height */
+    transition: background-color 0.3s ease-in-out;
+    border-radius: 50px;
+}
+
+nav ul li a:hover {
+    background-color: #5CDB95; /* Semi-transparent white for oval background */
+    /* If you want a solid color on hover, use the color code instead of rgba value */
+}
+
+nav ul li:hover .dropdown-content {
+    display: block;
+}
+
+nav .dropdown-content {
+    display: none;
+    position: absolute;
+    background-color: #05386B;
+    width: 140px;
+    box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2);
+    z-index: 1;
+    border-radius: 20px; /* Oval shape */
+    overflow: hidden;
+    padding: 0; /* Padding for content inside */
+    top: 100%;
+    left: 0;
+}
+
+nav .dropdown-content a {
+    color: white;
+    padding: 10px 10px;
+    text-decoration: none;
+    display: flex; /* Ensures proper alignment */
+    align-items: center;
+    text-align: left;
+    transition: background-color 0.3s ease-in-out;
+    border-radius: 20px; /* Initial border-radius for oval effect */
+}
+
+nav .dropdown-content a:hover {
+    background-color: #5CDB95;
+}
+
+
+.event-detail-container {
+    display: flex;
+    justify-content: space-between;
+}
+
+.event-content {
+    flex: 2; /* Takes up 2/3 of the space */
+    padding-right: 20px; /* Adds spacing between the content and the panel */
+}
+
+.event-details-panel {
+    flex: 1; /* Takes up 1/3 of the space */
+    border: 1px solid #ccc;
+    padding: 10px;
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+    background-color: #f9f9f9; /* Light background for the panel */
+}
+
+
+button {
+    padding: 10px 20px;
+    background-color: #5CDB95;
+    color: white;
+    border: none;
+    cursor: pointer;
+    align-self: center; /* Centers the button in the panel */
+}
+
+button:hover {
+    background-color: #53b485;
+}
+
+#img1{
+    width: 500px;
+}
+
+#img2{
+    width: 500px;
+}

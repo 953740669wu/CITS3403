@@ -1,0 +1,38 @@
+/* styles.css */
+body {
+    font-family: 'Arial', sans-serif;
+    background-color: #f4f4f4; /* Adjust to match your site's theme */
+    margin: 0;
+    padding: 0;
+}
+
+.container {
+    padding: 20px;
+}
+
+.latest-event {
+    background-color: #ffffff; /* Light background to stand out */
+    padding: 20px;
+    margin-bottom: 20px;
+    /* Add more styles to make the latest event stand out */
+}
+
+.event-list {
+    display: flex;
+    flex-direction: column;
+    gap: 20px; /* Adjust the space between events */
+    overflow-y: auto; /* Allows scrolling if the list is long */
+}
+
+.event {
+    background-color: #ffffff;
+    padding: 20px;
+    cursor: pointer; /* Indicates the event is clickable */
+    /* Add more styles for the event card */
+}
+
+.event:hover {
+    background-color: #eaeaea; /* Highlight effect on hover */
+}
+
+/* Media queries and responsiveness as needed */
