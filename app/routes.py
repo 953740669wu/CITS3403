@@ -14,7 +14,8 @@ from sqlalchemy import select
 @app.route('/index')
 def welcome():
     latest_question = QuestionModel.query.order_by(QuestionModel.create_time.desc()).first()
-    return render_template('welcome_page.html', latest_question = latest_question)
+    latest_event = EventModel.query.order_by(EventModel.create_time.desc()).first()
+    return render_template('welcome_page.html', latest_question = latest_question,latest_event=latest_event)
 
 
 @app.route('/')
