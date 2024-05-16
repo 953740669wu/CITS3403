@@ -1,30 +1,86 @@
-<!DOCTYPE html>
-<html lang="en">
 {% extends "base.html" %}
 
 {% block title %}Pet Hotel Booking{% endblock %}
 
 {% block content %}
-<link rel="stylesheet" href="static/css/event.css">
 
-<div class="container">
-    <!-- Latest Event Section -->
-    <div class="latest-event" id="latest-event">
-        <!-- Information about the latest event goes here -->
-        <!-- This part could be featured or highlighted in some way -->
-    </div>
 
-    <!-- Event List Section -->
-    <div class="event-list">
-        <!-- Replace with actual event items in production -->
-        <div class="event" onclick="window.location.href='event-detail.html';">
-            <!-- Event Content -->
+<body>
+        <div style="text-align:center;margin:20px auto">
+            <h2 style="margin:auto">All Events</h2>
         </div>
-        <!-- Repeat for as many events as needed -->
-    </div>
-</div>
+            {% for event in events %}
+        <div class="layui-card">
+            <div class="layui-card-header">
+                <h3>{{ event.title }}</h3>
+            </div>
+            <div class="layui-card-body">
+                <p><i class="layui-icon layui-icon-location"></i> Location: <span style="color: #009688;">{{ event.location }}</span></p>
+                <!--
+                <p><i class="layui-icon layui-icon-fire"></i> Description: <span style="color: #333;">{{ event.description }}</span></p>
+                -->
+                <p><i class="layui-icon layui-icon-username"></i> Author: <span style="color: #FF5722;">{{ event.author.username }}</span></p>
+                <p><i class="layui-icon layui-icon-time"></i> Create Time: <span style="color: #5FB878;">{{ event.create_time.strftime('%Y-%m-%d %H:%M:%S') }}</span></p>
+                <p><i class="layui-icon layui-icon-date"></i> Event Time: <span style="color: #FFB800;">{{ event.event_time.strftime('%Y-%m-%d %H:%M:%S') }}</span></p>
+                <div class="layui-btn-container" style="margin-top:10px">
+                    <a class="layui-btn layui-btn-sm layui-btn-success" href="/event/{{event.id}}">Details</a>
+                    <button class="layui-btn layui-btn-sm layui-btn-danger" id="likeBtn" data-event-id="{{ event.id }}">Like</button>
+                    <button class="layui-btn layui-btn-sm layui-bg-gray commentBtn" data-event-id="{{ event.id }}">Comment</button>
+                </div>
+            </div>
+        </div>
+            {% endfor %}
 
-<!-- Additional script for scrolling functionality if needed -->
-<script src="static/js/events.js"></script> <!-- Ensure the path to your JavaScript file is correct -->
+    <script src="https://cdn.staticfile.org/layui/2.5.7/layui.js"></script>
+    <script>
+        layui.use(["jquery","layer"],function(){
+            var $ = layui.jquery;
+            var layer = layui.layer;
+            $("#likeBtn").click(function(){
+                var event_id = $(this).data('event-id');
+                $.ajax({
+                    url: '/like_event/' + event_id,
+                    type: 'POST',
+                    success: function(response){
+                        if(response.status == 'success'){
+                            layer.alert('Event liked successfully.');
+                        } else {
+                            layer.alert(response.message);
+                        }
+                    },
+                    error: function(xhr, status, error){
+                        layer.alert('An error occurred while processing your request.');
+                    }
+                });
+            });
+            // 评论按钮点击事件
+            $(".commentBtn").click(function () {
+                var event_id = $(this).data('event-id');
+                layer.prompt({
+                    formType: 2,
+                    title: 'Comment',
+                    area: ['300px', '150px']
+                }, function (value, index, elem) {
+                    $.ajax({
+                        url: '/comment',
+                        type: 'POST',
+                        contentType: 'application/json',
+                        data: JSON.stringify({ event_id: event_id, content: value }),
+                        success: function (response) {
+                            if(response.status == 'success'){
+                                layer.alert('Comment added successfully.');
+                                layer.closeAll();
+                            } else {
+                                layer.alert(response.message);
+                            }
+                        },
+                        error: function (xhr, status, error) {
+                            layer.alert('An error occurred while processing your request.');
+                        }
+                    });
+                });
+            });
+        });
+    </script>
 {% endblock %}
 </html>
