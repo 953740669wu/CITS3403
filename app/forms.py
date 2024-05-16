@@ -1,6 +1,6 @@
 import wtforms
 from flask_wtf import FlaskForm
-from wtforms import StringField, PasswordField, BooleanField, SubmitField, TextAreaField, IntegerField
+from wtforms import StringField, PasswordField, BooleanField, SubmitField, TextAreaField, IntegerField, DateTimeField
 from wtforms.validators import ValidationError, DataRequired, Email, EqualTo, Length, InputRequired
 from app.models import UserModel
 
@@ -43,3 +43,10 @@ class QuestionForm(FlaskForm):
 class AnswerForm(wtforms.Form):
     content = TextAreaField('Content', validators=[DataRequired()])
     question_id = IntegerField('Question ID', validators=[InputRequired()])
+
+class EventForm(FlaskForm):
+    title = StringField('Title', validators=[DataRequired()])
+    location = StringField('Location', validators=[DataRequired()])
+    description = TextAreaField('Description', validators=[DataRequired()])
+    event_time = DateTimeField('Event Time', format='%Y-%m-%d %H:%M:%S', validators=[DataRequired()])
+    submit = SubmitField('Submit')
