@@ -31,11 +31,9 @@ def login():
             
             user = UserModel.query.filter_by(username=username).first()
             if user is None:
-                flash('User not registered.', 'error')
-                return redirect(url_for('login'))
+                return jsonify({'redirect': url_for('login'), 'message': 'User not registered.'}), 400
             if not user.check_password(password):
-                flash('Invalid username or password.', 'error')
-                return redirect(url_for('login'))
+                return jsonify({'redirect': url_for('login'), 'message': 'User not registered.'}), 400
             
             # Logic for successful customer login
             login_user(user)
@@ -66,6 +64,7 @@ def login():
             return jsonify({'redirect': next_page, 'message': session.pop('message')})
 
     return render_template('login.html', form=customer_login_form, staff_form=staff_login_form)
+
 @app.route('/sign_up', methods=['GET', 'POST'])
 def sign_up():
     if current_user.is_authenticated:
