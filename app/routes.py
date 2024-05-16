@@ -1,4 +1,4 @@
-from flask import render_template, request, redirect, url_for, flash, get_flashed_messages
+from flask import render_template, request, redirect, url_for, flash, get_flashed_messages,session,jsonify
 from app import app, db
 from app.forms import LoginForm, StaffLoginForm
 from app.models import UserModel, QuestionModel, AnswerModel
@@ -42,12 +42,12 @@ def login():
                 return redirect(url_for('login'))
             
             # Logic for successful customer login
-            flash('Customer login successful!')
             login_user(user)
+            session['message'] = 'Customer login successful!'
             next_page = request.args.get('next')
             if not next_page or urlsplit(next_page).netloc != '':
                 next_page = url_for('index')
-            return redirect(next_page)
+            return jsonify({'redirect': next_page, 'message': session.pop('message')})
         
         elif staff_login_form.validate_on_submit():
             staff_username = staff_login_form.staff_username.data
@@ -62,18 +62,14 @@ def login():
                 return redirect(url_for('login'))
             
             # Logic for successful staff login
-            flash('Staff login successful!')
             login_user(staff)
+            session['message'] = 'Staff login successful!'
             next_page = request.args.get('next')
             if not next_page or urlsplit(next_page).netloc != '':
                 next_page = url_for('index')
-            return redirect(next_page)
+            return jsonify({'redirect': next_page, 'message': session.pop('message')})
 
-    # Get flashed messages
-    messages = get_flashed_messages(with_categories=True)
-
-    return render_template('login.html', form=customer_login_form, staff_form=staff_login_form, messages=messages)
-
+    return render_template('login.html', form=customer_login_form, staff_form=staff_login_form)
 @app.route('/sign_up', methods=['GET', 'POST'])
 def sign_up():
     if current_user.is_authenticated:
