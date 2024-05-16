@@ -1,4 +1,3 @@
-/* Reset some default styles */
 body, h1, h2, p, ul {
     margin: 0;
     padding: 0;
@@ -7,14 +6,14 @@ body, h1, h2, p, ul {
 body {
     font-family: Arial, sans-serif;
     line-height: 1.6;
-    background-color: #ffffff; /* White background */
+    background-image: linear-gradient(-20deg, #e9defa 0%, #fbfcdb 100%);
 }
 
 /*      part for navbar.css    */
 
 
 .welcome {
-    padding: 20px;
+    padding: 30px;
     text-align: center;
 }
 
@@ -22,7 +21,7 @@ body {
     color: #05386B; /* Text color to match the nav bar for consistency */
 }
 
-.latest-article, .upcoming-events { /* ÐÞ¸ÄÀàÃû */
+.latest-article, .upcoming-events { 
     padding: 20px;
     text-align: center;
     border-top: 1px solid #eaeaea; /* subtle border to visually separate sections */

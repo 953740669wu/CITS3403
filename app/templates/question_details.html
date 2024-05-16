@@ -5,23 +5,31 @@ Article Detail
 {% endblock %}
 
 {% block content %}
-<h1>{{ question.title }}</h1>
-<p><strong>Published Date:</strong> {{ question.create_time.strftime('%Y-%m-%d') }}</p>
-<p><strong>Author:</strong> {{ question.author.username }}</p>
-<div class="article-content">
-    {{ question.content | safe }}
+
+<link rel="stylesheet" href="{{ url_for('static', filename='css/question_details.css') }}">
+<div class="article-box">
+    <h1 class="center">{{ question.title }}</h1>
+    <div class="article-content">
+        {{ question.content | safe }}
+    </div>
+
+    <p class="article-detail"><strong>Published Date:</strong> {{ question.create_time.strftime('%Y-%m-%d') }}</p>
+    <p class="article-detail"><strong>Author:</strong> {{ question.author.username }}</p>
 </div>
 
+
 <!-- Answer Form -->
-<div class="answer-form">
-    <h2>Submit an Answer</h2>
-    <form method="POST" action="{{ url_for('public_answer') }}">
-        <div class="form-group">
-            <textarea name="content" required="required" placeholder="Enter your answer here..." class="form-control"></textarea>
-        </div>
-        <input type="hidden" name="question_id" value="{{ question.id }}">
-        <button type="submit" class="btn btn-primary">Submit Answer</button>
-    </form>
+<div class="answer-form-wrapper">
+    <div class="answer-form">
+        <h2>Answering the request</h2>
+        <form method="POST" action="{{ url_for('public_answer') }}">
+            <div class="form-group">
+                <textarea name="content" required="required" placeholder="Enter your answer here..." class="form-control"></textarea>
+            </div>
+            <input type="hidden" name="question_id" value="{{ question.id }}">
+            <button type="submit" class="btn btn-primary">Submit Answer</button>
+        </form>
+    </div>
 </div>
 
 <!-- Display Comments -->
