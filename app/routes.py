@@ -96,7 +96,8 @@ def forgot_password():
 
 @app.route('/event', methods=['GET'])
 def event_page():
-    return render_template('event_page.html')
+    events = EventModel.query.all()
+    return render_template('event_page.html', events = events)
 
 @app.route('/forum_page')
 def forum_page():
