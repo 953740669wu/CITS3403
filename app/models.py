@@ -49,3 +49,35 @@ class AnswerModel(db.Model):
 
     question = db.relationship('QuestionModel', backref=db.backref("answers", order_by=create_time.desc()))
     author = db.relationship(UserModel, backref= "answers")
+
+class EventModel(db.Model):
+    __tablename__ = 'event'
+    id = db.Column(db.Integer, primary_key=True, autoincrement=True)
+    title = db.Column(db.String(100), nullable=False)
+    location = db.Column(db.String(100), nullable=False)
+    description = db.Column(db.Text, nullable=False)
+    author_id = db.Column(db.Integer, db.ForeignKey('user.id'), nullable=False)
+    create_time = db.Column(db.DateTime, default=datetime.utcnow)
+    event_time = db.Column(db.DateTime, nullable=False)
+
+    author = db.relationship('UserModel', backref=db.backref('events', lazy=True))
+
+class LikeModel(db.Model):
+    __tablename__ = 'like'
+    id = db.Column(db.Integer, primary_key=True)
+    event_id = db.Column(db.Integer, db.ForeignKey('event.id'), nullable=False)
+    user_id = db.Column(db.Integer, db.ForeignKey('user.id'), nullable=False)
+    like_time = db.Column(db.DateTime, default=datetime.utcnow, nullable=False)
+
+    def __repr__(self):
+        return f"Like(id={self.id}, event_id={self.event_id}, user_id={self.user_id}, like_time={self.like_time})"
+class CommentModel(db.Model):
+    __tablename__ = 'comment'
+    id = db.Column(db.Integer, primary_key=True)
+    event_id = db.Column(db.Integer, db.ForeignKey('event.id'), nullable=False)
+    user_id = db.Column(db.Integer, db.ForeignKey('user.id'), nullable=False)
+    content = db.Column(db.Text, nullable=False)
+    comment_time = db.Column(db.DateTime, default=datetime.utcnow)
+
+    def __repr__(self):
+        return f"Comment(id={self.id}, event_id={self.event_id}, user_id={self.user_id})"
