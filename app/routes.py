@@ -190,17 +190,13 @@ def my_questions():
     questions = QuestionModel.query.filter_by(author_id=current_user.id).order_by(QuestionModel.create_time.desc()).all()
     return render_template('my_questions.html', questions=questions)
 
-@app.route('/question/delete/<int:question_id>', methods=['POST'])
-@login_required
-def delete_question(question_id):
-    question = QuestionModel.query.get_or_404(question_id)
-    if question.author_id != current_user.id:
-        flash('You do not have permission to delete this question.', 'error')
-        return redirect(url_for('forum_page'))
-    
-    db.session.delete(question)
-    db.session.commit()
-    flash('Question deleted successfully.')
+@app.route('/delete/<int:post_id>', methods=['POST'])
+def delete_post(post_id):
+    post = QuestionModel.query.get(post_id)
+    if post and post.author_id == current_user.id:
+        db.session.delete(post)
+        db.session.commit()
+        flash('Question deleted successfully.')
     return redirect(url_for('forum_page'))
 
 
