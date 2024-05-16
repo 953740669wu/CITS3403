@@ -1,11 +1,14 @@
 from flask import render_template, request, redirect, url_for, flash, get_flashed_messages,session,jsonify
 from app import app, db
 from app.forms import LoginForm, StaffLoginForm
-from app.models import UserModel, QuestionModel, AnswerModel
+from app.models import UserModel, QuestionModel, AnswerModel, EventModel,LikeModel,CommentModel
+from flask_mail import Message
 from flask_login import logout_user, login_required, current_user, login_user
-from app.forms import RegistrationForm, QuestionForm, AnswerForm
+from app.forms import RegistrationForm, QuestionForm, AnswerForm, EventForm
 from sqlalchemy import select
 from urllib.parse import urlsplit
+from werkzeug.utils import secure_filename
+import os
 
 @app.route('/')
 @app.route('/index')
@@ -98,6 +101,11 @@ def forgot_password():
 def event_page():
     events = EventModel.query.all()
     return render_template('event_page.html', events = events)
+
+@app.route('/event/<int:event_id>')
+def event_details(event_id):
+    event = EventModel.query.get_or_404(event_id)
+    return render_template('event_detail.html', event=event)
 
 @app.route('/forum_page')
 def forum_page():
