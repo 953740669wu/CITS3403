@@ -19,7 +19,7 @@
                 <h3>{{ latest_question.title }}</h3>
                 <p>{{ latest_question.content[:150] }}...</p >
                 <small>Published by {{ latest_question.author.username }} on {{ latest_question.create_time.strftime('%Y-%m-%d %H:%M') }}</small>
-                Read more
+                <a href="{{ url_for('question_details', question_id=latest_question.id) }}">Read more</a>
             </article>
         
     {% else %}
@@ -29,11 +29,21 @@
 </section>
 
 
-<section class="upcoming-events">
-    <h2>Upcoming Events &#x1F4E2;</h2>
-    <div id="events-container">
-        <!-- Placeholder for events; to be populated with content -->
-        <p>Stay tuned for exciting upcoming events!</p>
+<section class="latest-article"> 
+    <h2>Latest Event &#x1F5DE;&#xFE0F;</h2>
+    <div id="articles-container"> 
+    {% if latest_event %}
+        <article>
+            <h3>{{ latest_event.title }}</h3>
+            <p>{{ latest_event.description[:150] }}...</p>
+            <small>Published by {{ latest_event.author.username }} on {{ latest_event.create_time.strftime('%Y-%m-%d %H:%M') }}</small>
+            <a href="{{ url_for('event_details', event_id=latest_event.id) }}">Read more</a>
+        </article>
+
+        
+    {% else %}
+        <p>No recent event found.</p >
+    {% endif %}
     </div>
 </section>
 {% endblock %}
