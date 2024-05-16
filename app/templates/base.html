@@ -6,7 +6,8 @@
     <title>{% block title %}Pet Hotel Booking{% endblock %}</title>
     <link rel="stylesheet" href="{{ url_for('static', filename='css/navbar.css') }}">
     <link rel="stylesheet" href="{{ url_for('static', filename='css/welcome.css') }}">
-    <link rel="stylesheet" href="{{ url_for('static', filename='css/login.css') }}">   
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/login.css') }}">
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/popup.css') }}">
 </head>
 <body>
 
@@ -24,13 +25,18 @@
                 <li class="nav-item">
                     <a href="{{ url_for('user', username=current_user.username) }}" class="username-link">{{ current_user.username }}</a>
                 </li>
-                <li class="logout"><a href="{{ url_for('logout') }}">logout</a></li>
+                <li class="logout"><a href="{{ url_for('logout') }}">Logout</a></li>
             {% else %}
                 <li class="login"><a href="{{ url_for('login') }}">Login</a></li>
             {% endif %}
         </ul>
     </nav>
 </header>
+
+<div id="flash-message" style="display: none;">
+    <p id="flash-content"></p>
+    <button id="close-popup">Close</button>
+</div>
 
 {% block content %}
 <!-- This block will be overridden by child templates -->
@@ -40,6 +46,8 @@
     <p>© 2024 PetPals Forum. All rights reserved.</p>
 </footer>
 
-<script src="static/js/navbar.js"></script>
+<script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+<script src="{{ url_for('static', filename='js/scripts.js') }}"></script>
+<script src="{{ url_for('static', filename='js/navbar.js') }}"></script>
 </body>
 </html>
