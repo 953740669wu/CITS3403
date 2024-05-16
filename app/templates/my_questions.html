@@ -9,6 +9,7 @@
     <div class="profile-header">
         <img src="https://www.gravatar.com/avatar/{{ current_user.avatar_hash }}?d=identicon&s=100" alt="Avatar" class="avatar">
         <h1 class="user-name">User: {{ current_user.username }}</h1>
+        <a href="/create_event">Post Event</a>
     </div>
     <h2>Published Questions</h2>
     {% if questions %}
