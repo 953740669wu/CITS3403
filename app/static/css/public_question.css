@@ -1,0 +1,65 @@
+.page-container {
+    max-width: 600px; /* Set the max-width of the page container */
+    margin: 0 auto; /* Center the page horizontally */
+    padding: 20px; /* Add padding */
+}
+
+.page-title {
+    margin-bottom: 20px; /* Spacing below the title */
+    padding-bottom: 10px;
+    text-align: center; /* Center the text */
+    font-size: 28px; /* Larger font size for headings */
+    font-weight: bold;
+    font-family:'Times New Roman', Times, serif;/* Set font family */
+    color: #05386B; /* Dark blue for contrast */
+    border-bottom: 2px solid #ddd; /* Light grey line under the title */
+}
+
+.form-container {
+    width: 100%; /* Set the width of the form container to 100% */
+    max-width: 600px; /* Set the max-width of the form container */
+    margin: 0 auto; /* Center the form container horizontally */
+}
+
+.form-group {
+    margin-bottom: 20px; /* Spacing between form items */
+}
+
+.form-group input {
+    width: 100%; /* Set the width of inputs to 100% */
+    padding: 10px; /* Add padding to inputs */
+    box-sizing: border-box; /* Include padding and border in the total width */
+    height: 60px; /* Set the height of inputs to 40px */
+}
+
+.form-group input[name="title"] {
+    font-size: 20px; /* Increase font size */
+    font-weight: bold; /* Set font weight to bold */
+    font-family:'Times New Roman', Times, serif/* Set font family */
+}
+
+.form-group textarea {
+    width: 100%; /* Set the width of textarea to 100% */
+    padding: 10px; /* Add padding to textarea */
+    box-sizing: border-box; /* Include padding and border in the total width */
+    height: 500px; /* Set the height of textarea to 100px */
+    resize: vertical; /* Allow vertical resizing of textarea */
+    font-size: 16px; /* Set font size */
+    font-family:'Times New Roman', Times, serif/* Set font family */
+}
+
+.form-group button {
+    padding: 20px;
+    background-color: #5CDB95; /* Green shade for buttons */
+    border: none;
+    border-radius: 5px;
+    font-size: 18px; /* Larger font for better readability */
+    color: white; /* White text on the button */
+    cursor: pointer;
+    transition: background-color 0.3s;
+    width: auto; /* Set button width to auto to fit content */
+}
+
+.form-group button:hover {
+    background-color: #05386B; /* Darker shade on hover */
+}

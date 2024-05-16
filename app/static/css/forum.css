@@ -26,15 +26,18 @@ a {
     background-color: #fff; /* White background for content */
     border-radius: 8px; /* Rounded corners */
     box-shadow: 0 2px 10px rgba(0,0,0,0.1); /* Subtle shadow for depth */
+    display: flex; /* Flexbox layout */
+    flex-direction: column; /* Stack children vertically */
+    align-items: center; /* Vertical centering */
 }
-
 /* Heading styles */
 h2 {
-    font-size: 24px; /* Larger font size for headings */
+    font-size: 30px; /* Larger font size for headings */
     color: #05386B; /* Dark blue for contrast */
     padding-bottom: 10px;
     margin-bottom: 20px;
     border-bottom: 2px solid #ddd; /* Light grey line under the title */
+    font-family:'Times New Roman', Times, serif;/* Set font family */
 }
 
 /* Styles for each question */
@@ -63,7 +66,8 @@ h2 {
 }
 
 .btn-primary {
-    padding: 10px 20px;
+    padding: 10px  20px;
+    float: right;
     background-color: #5CDB95; /* Green shade for buttons */
     border: none;
     border-radius: 5px;
@@ -71,13 +75,52 @@ h2 {
     color: white; /* White text on the button */
     cursor: pointer;
     transition: background-color 0.3s;
+    margin-top: -35px; /* Add margin to separate from the search bar */
+    margin-right: -110px;
 }
 
 .btn-primary:hover {
-    background-color: #53b485; /* Darker shade on hover */
+    background-color: #05386B; /* Darker shade on hover */
+}
+
+
+.btn-post {
+    padding: 20px;
+    background-color: #5CDB95; /* Green shade for buttons */
+    border: none;
+    border-radius: 5px;
+    font-size: 16px; /* Larger font for better readability */
+    color: white; /* White text on the button */
+    cursor: pointer;
+    transition: background-color 0.3s;
+    float: left; /* Move the button to the left */
+    margin-top: 40px; /* Add margin to separate from the search bar */
+    margin-left: -20px;
+}
+
+.btn-post:hover {
+    background-color: #05386B; /* Darker shade on hover */
 }
 
 /* Spacing and visual separation */
 .mb-3 {
     margin-bottom: 15px; /* Consistent margin for spacing */
+}
+
+
+/* Styles for the search form */
+.search-form {
+    width: 60%; /* Set the width of the search bar to 100% */
+}
+
+.search-form input[type="text"] {
+    font-size: 22px; /* Set font size for input */
+    font-family:'Times New Roman', Times, serif;/* Set font family */
+
+}
+
+/* Styles for the form control */
+.form-control {
+    width: 100%; /* Set the width of the search input to 100% */
+    font-size: 1.3em;
 }
