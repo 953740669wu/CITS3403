@@ -8,19 +8,16 @@
 <link rel="stylesheet" href="{{ url_for('static', filename='css/login.css') }}">
 
 <div class="login-container">
-    <!-- Pop-up for flashed messages -->
-<div id="popup" class="popup">
-    <p id="popup-message" class="popup-message">
-        {% with messages = get_flashed_messages(with_categories=true) %}
-            {% if messages %}
+    <!-- Flashed messages -->
+    {% with messages = get_flashed_messages(with_categories=true) %}
+        {% if messages %}
+            <div class="flashes">
                 {% for category, message in messages %}
-                    {{ message[5:] }} 
+                    <div class="flash flash-{{ category }}">{{ message }}</div>
                 {% endfor %}
-            {% endif %}
-        {% endwith %}
-    </p>
-    <a href="#" id="popup-close" class="popup-close">Close</a>
-</div>
+            </div>
+        {% endif %}
+    {% endwith %}
 
     <div class="login-section">
         <h2>User Login</h2>
@@ -53,30 +50,5 @@
         </div>
     </div>
 </div>
-
-<script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
-<script>
-    $(document).ready(function() {
-        $('#customer-login').submit(function(event) {
-            event.preventDefault(); // Prevent form submission
-            
-            $.ajax({
-                type: 'POST',
-                url: '/login',
-                data: $('#customer-login').serialize(),
-                success: function(response) {
-                    alert(response.message); // Show pop-up window
-                    window.location.href = response.redirect_url; // Redirect after login
-                },
-                error: function(error) {
-                    console.log(error);
-                    alert('An error occurred. Please try again.'); // Show error message
-                }
-            });
-        });
-    });
-</script>
-
 {% endblock %}
-
 </html>

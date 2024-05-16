@@ -6,7 +6,6 @@ from flask_login import logout_user, login_required, current_user, login_user
 from app.forms import RegistrationForm, QuestionForm, AnswerForm
 from sqlalchemy import select
 from urllib.parse import urlsplit
-from flask import jsonify
 
 @app.route('/')
 @app.route('/index')
@@ -42,19 +41,39 @@ def login():
                 flash('Invalid username or password.', 'error')
                 return redirect(url_for('login'))
             
-            # Return a JSON response to trigger the pop-up window
-            return jsonify({"message": "Login successful", "redirect_url": url_for('index')})
-
+            # Logic for successful customer login
+            flash('Customer login successful!')
+            login_user(user)
+            next_page = request.args.get('next')
+            if not next_page or urlsplit(next_page).netloc != '':
+                next_page = url_for('index')
+            return redirect(next_page)
+        
         elif staff_login_form.validate_on_submit():
-            # Placeholder for staff login logic
-            pass  # Replace this with your staff login logic
+            staff_username = staff_login_form.staff_username.data
+            staff_password = staff_login_form.staff_password.data
+
+            staff = UserModel.query.filter_by(username=staff_username).first()
+            if staff is None:
+                flash('Staff user not registered.', 'error')
+                return redirect(url_for('login'))
+            if not staff.check_password(staff_password):
+                flash('Invalid staff username or password.', 'error')
+                return redirect(url_for('login'))
+            
+            # Logic for successful staff login
+            flash('Staff login successful!')
+            login_user(staff)
+            next_page = request.args.get('next')
+            if not next_page or urlsplit(next_page).netloc != '':
+                next_page = url_for('index')
+            return redirect(next_page)
 
     # Get flashed messages
     messages = get_flashed_messages(with_categories=True)
 
     return render_template('login.html', form=customer_login_form, staff_form=staff_login_form, messages=messages)
 
-    
 @app.route('/sign_up', methods=['GET', 'POST'])
 def sign_up():
     if current_user.is_authenticated:

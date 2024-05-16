@@ -102,35 +102,3 @@ body {
     border-radius: 50%;
     margin-bottom: 20px;
 }
-
-.popup {
-    display: none;
-    position: fixed;
-    left: 50%;
-    top: 50%;
-    transform: translate(-50%, -50%);
-    background-color: #f9edbe;
-    padding: 20px;
-    border: 2px solid #f0c36d;
-    z-index: 1000;
-    box-shadow: 0 0 10px rgba(0,0,0,0.5);
-    border-radius: 5px;
-    text-align: center;
-}
-.popup.show {
-    display: block;
-}
-.popup .popup-message {
-    margin: 0;
-    padding: 0;
-}
-.popup .popup-close {
-    display: block;
-    margin-top: 10px;
-    color: #555;
-    text-decoration: none;
-    font-weight: bold;
-}
-.popup .popup-close:hover {
-    color: #000;
-}
