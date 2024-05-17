@@ -4,7 +4,7 @@
 
 {% block content %}
 
-<link rel="stylesheet" href="{{ url_for('static', filename='css/forum.css') }}">
+<link rel="stylesheet" href="{{ url_for('static', filename='css/forums.css') }}">
 
 <div class="questions-container">
     <h2>Published Questions</h2>
@@ -13,28 +13,32 @@
         <input type="text" name="q" placeholder="Search questions..." class="form-control" required>
         <button type="submit" class="btn btn-primary">Search</button>
     </form>
-    <div class="mb-3">
-        <a href="{{ url_for('forum_p_page') }}" class="btn btn-post">Post article</a>
-    </div>
-    <!-- If no articles found, display the message -->
-    {% if not questions %}
-        <div class="no-article">
-            <p>No Article found.</p>
+
+    <div class="content-box">
+        <div class="mb-3">
+            <a href="{{ url_for('forum_p_page') }}" class="btn btn-post">Post article</a>
         </div>
-    {% endif %}
-    <!-- Display articles if available -->
-    {% if questions %}
-        <ul class="questions-list">
-            {% for question in questions %}
-                <li class="question-item">
-                    <h3>{{ question.title }}</h3>
-                    <p>{{ question.content[:150] }}...</p>
-                    <p>Posted by {{ question.author.username }} on {{ question.create_time.strftime('%Y-%m-%d %H:%M') }}</p>
-                    <a href="{{ url_for('question_details', question_id=question.id) }}">Read more</a>
-                    <hr>
-                </li>
-            {% endfor %}
-        </ul>
-    {% endif %}
+        <!-- If no articles found, display the message -->
+        {% if not questions %}
+            <div class="no-article">
+                <p>No Article found.</p>
+            </div>
+        {% endif %}
+        <!-- Display articles if available -->
+        {% if questions %}
+            <ul class="questions-list">
+                {% for question in questions %}
+                    <li class="question-item">
+                        <h3>{{ question.title }}</h3>
+                        <p>{{ question.content[:150] }}...</p>
+                        <p>Posted by {{ question.author.username }} on {{ question.create_time.strftime('%Y-%m-%d %H:%M') }}</p>
+                        <a href="{{ url_for('question_details', question_id=question.id) }}">Read more</a>
+                        <hr>
+                    </li>
+                {% endfor %}
+            </ul>
+        {% endif %}
+    </div>
 </div>
+
 {% endblock %}
