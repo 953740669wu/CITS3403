@@ -7,21 +7,20 @@ from app.models import UserModel
 from flask_login import LoginManager
 from app.blueprints import main
 
-app = Flask(__name__, template_folder='templates')
-app.config.from_object(Config)
+def create_app(config_class=Config):
+    app = Flask(__name__)
+    app.config.from_object(config_class)
 
+    db.init_app(app)
+    migrate.init_app(app, db)
 
-db.init_app(app)
-migrate.init_app(app, db)
-app.register_blueprint(main)
-login_manager.init_app(app)  
-login_manager.login_view = 'main.login' 
+    from app.blueprints import main
+    app.register_blueprint(main)
 
-from app import routes
+    login_manager.init_app(app)
+    login_manager.login_view = 'main.login'
 
+    with app.app_context():
+        from app import routes  
 
-
-if __name__ == '__main__':
-    for rule in app.url_map.iter_rules():
-        print(rule)
-    app.run(debug=True)
+    return app
