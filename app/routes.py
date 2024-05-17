@@ -112,7 +112,7 @@ def forum_p_page():
             question = QuestionModel(title=title, content=content, author=current_user)
             db.session.add(question)
             db.session.commit()
-            flash('问题成功发布！')
+            
             return redirect('/')
         else:
             for fieldName, errorMessages in form.errors.items():
@@ -207,7 +207,7 @@ def create_event():
         )
         db.session.add(event)
         db.session.commit()
-        flash('Event has been created successfully!', 'success')
+        
         return redirect(url_for('main.index'))
     return render_template('create_event.html', form=form)
 @main.route('/like_event/<int:event_id>', methods=['POST'])
