@@ -1,5 +1,5 @@
 from flask import render_template, request, redirect, url_for, flash, get_flashed_messages,session,jsonify
-from app import app, db
+from app.extensions import db
 from app.forms import LoginForm, StaffLoginForm
 from app.models import UserModel, QuestionModel, AnswerModel, EventModel,LikeModel,CommentModel
 from flask_mail import Message
