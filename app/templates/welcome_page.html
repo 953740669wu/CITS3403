@@ -19,7 +19,7 @@
                 <h3>{{ latest_question.title }}</h3>
                 <p>{{ latest_question.content[:150] }}...</p >
                 <small>Published by {{ latest_question.author.username }} on {{ latest_question.create_time.strftime('%Y-%m-%d %H:%M') }}</small>
-                <a href="{{ url_for('question_details', question_id=latest_question.id) }}">Read more</a>
+                <a href="{{ url_for('main.question_details', question_id=latest_question.id) }}">Read more</a>
             </article>
         
     {% else %}
@@ -37,7 +37,7 @@
             <h3>{{ latest_event.title }}</h3>
             <p>{{ latest_event.description[:150] }}...</p>
             <small>Published by {{ latest_event.author.username }} on {{ latest_event.create_time.strftime('%Y-%m-%d %H:%M') }}</small>
-            <a href="{{ url_for('event_details', event_id=latest_event.id) }}">Read more</a>
+            <a href="{{ url_for('main.event_details', event_id=latest_event.id) }}">Read more</a>
         </article>
 
         

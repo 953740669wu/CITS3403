@@ -11,7 +11,7 @@
 <div class="login-container">
     <div class="login-section">
         <h2>User Sign Up</h2>
-        <form action="{{ url_for('sign_up') }}" method="post">
+        <form action="{{ url_for('main.sign_up') }}" method="post">
             {{ form.hidden_tag() }}
             <p>
                 {{ form.username.label }}<br>
@@ -45,7 +45,7 @@
         </form>
         
         <div class="login-links">
-            <a href="{{ url_for('forgot_password') }}">Forgot Password</a>
+            <a href="{{ url_for('main.forgot_password') }}">Forgot Password</a>
         </div>
     </div>
 </div>

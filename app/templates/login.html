@@ -21,7 +21,7 @@
 
     <div class="login-section">
         <h2>User Login</h2>
-        <form id="customer-login" action="{{ url_for('login') }}" method="post">
+        <form id="customer-login" action="{{ url_for('main.login') }}" method="post">
             {{ form.csrf_token }}
             <p>
                 {{ form.username.label }}<br>
@@ -45,8 +45,8 @@
             <p><button class="custom-button" type="submit">Login</button></p>
         </form>
         <div class="login-links">
-            <a href="{{ url_for('forgot_password') }}">Forgot Password</a>
-            <a href="{{ url_for('sign_up') }}">Sign Up</a>
+            <a href="{{ url_for('main.forgot_password') }}">Forgot Password</a>
+            <a href="{{ url_for('main.sign_up') }}">Sign Up</a>
         </div>
     </div>
 </div>
