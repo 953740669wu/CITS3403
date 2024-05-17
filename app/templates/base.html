@@ -18,16 +18,16 @@
         </div>
         <ul class="nav-links">
             <li><a href="/">Home</a></li>
-            <li><a href="{{ url_for('event_page') }}">Event</a></li>
-            <li><a href="{{ url_for('forum_page') }}">Forum</a></li>
+            <li><a href="{{ url_for('main.event_page') }}">Event</a></li>
+            <li><a href="{{ url_for('main.forum_page') }}">Forum</a></li>
 
             {% if current_user.is_authenticated %}
                 <li class="nav-item">
-                    <a href="{{ url_for('user', username=current_user.username) }}" class="username-link">{{ current_user.username }}</a>
+                    <a href="{{ url_for('main.user', username=current_user.username) }}" class="username-link">{{ current_user.username }}</a>
                 </li>
-                <li class="logout"><a href="{{ url_for('logout') }}">Logout</a></li>
+                <li class="logout"><a href="{{ url_for('main.logout') }}">Logout</a></li>
             {% else %}
-                <li class="login"><a href="{{ url_for('login') }}">Login</a></li>
+                <li class="login"><a href="{{ url_for('main.login') }}">Login</a></li>
             {% endif %}
         </ul>
     </nav>
