@@ -86,7 +86,8 @@ def event_page():
 @main.route('/event/<int:event_id>')
 def event_details(event_id):
     event = EventModel.query.get_or_404(event_id)
-    return render_template('event_detail.html', event=event)
+    comments = CommentModel.query.filter_by(event_id=event_id).all()  
+    return render_template('event_detail.html', event=event, comments=comments)
 
 @main.route('/forum_page')
 def forum_page():
