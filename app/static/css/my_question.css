@@ -1,102 +1,276 @@
-h2,h1{
+/* Global styles */
+body {
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    background: #f4f4f9;
+    margin: 0;
+    padding: 0;
+    color: #333;
+}
+
+h1, h2 {
     color: #05386B;
+    text-align: center;
 }
 
-/* General styling for profile container and elements */
+/* Profile container styling */
 .profile-container {
-    max-width: 800px; /* Control the width of the container */
-    margin: 20px auto; /* Center the container */
-    padding: 20px;
-    background-color: #fff; /* White background for readability */
-    border-radius: 8px; /* Rounded corners for a modern look */
-    box-shadow: 0 2px 10px rgba(0,0,0,0.1); /* Subtle shadow for depth */
+    max-width: 900px;
+    margin: 40px auto;
+    padding: 30px;
+    background: linear-gradient(145deg, #ffffff, #e6e6e6);
+    border-radius: 12px;
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
+    position: relative;
+    overflow: hidden;
+    transition: transform 0.3s;
 }
 
-/* Styling for the user's avatar and name */
+.profile-container:hover {
+    transform: translateY(-5px);
+}
+
+.profile-container::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 5px;
+    background: linear-gradient(to right, #5CDB95, #05386B);
+}
+
+/* Profile header styling */
 .profile-header {
     display: flex;
-    align-items: center; /* Align the items vertically */
+    align-items: center;
     padding-bottom: 20px;
     margin-bottom: 20px;
-    border-bottom: 2px solid #eee; /* Subtle separation from content */
-}
-
-.profile-header h1{
-    color: #05386B;
+    border-bottom: 2px solid #eee;
 }
 
 .avatar {
-    width: 100px; /* Fixed size for the avatar */
-    height: 100px;
-    border-radius: 50%; /* Make the avatar a circle */
-    margin-right: 20px; /* Space between avatar and username */
+    width: 120px;
+    height: 120px;
+    border-radius: 50%;
+    margin-right: 20px;
+    border: 3px solid #5CDB95;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+    transition: transform 0.3s;
+}
+
+.avatar:hover {
+    transform: scale(1.1);
 }
 
 .user-name {
-    font-size: 24px; /* Larger font size for visibility */
-    color: #333; /* Darker text for emphasis */
+    font-size: 28px;
+    color: #333;
+    font-weight: bold;
+    position: relative;
 }
 
-/* Styling for the user's posted questions section */
+.user-name::before {
+    content: '\f007';
+    font-family: FontAwesome;
+    position: absolute;
+    left: -30px;
+    top: 50%;
+    transform: translateY(-50%);
+    font-size: 24px;
+    color: #5CDB95;
+}
+
+/* Questions section styling */
 .questions-container {
-    margin-top: 20px;
+    margin-top: 30px;
+}
+
+.questions-container h2 {
+    font-size: 24px;
+    margin-bottom: 20px;
 }
 
 .questions-list {
-    list-style: none; /* No bullet points */
+    list-style: none;
     padding: 0;
 }
 
 .question-item {
-    padding: 15px;
-    border-bottom: 1px solid #eee; /* Separator between items */
+    padding: 20px;
+    border-bottom: 1px solid #eee;
+    transition: background-color 0.3s, transform 0.3s;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+}
+
+.question-item:hover {
+    background-color: #f1f8f5;
+    transform: translateX(5px);
 }
 
 .question-item:last-child {
-    border-bottom: none; /* Remove border from the last item */
+    border-bottom: none;
 }
 
 .question-item h3 {
-    font-size: 20px; /* Larger font size for question titles */
+    font-size: 22px;
     margin-bottom: 5px;
+    color: #05386B;
 }
 
 .question-item p {
-    font-size: 16px; /* Smaller font size for details */
-    color: #666; /* Lighter grey for less emphasis */
-    line-height: 1.4; /* More readable line spacing */
+    font-size: 16px;
+    color: #666;
+    line-height: 1.6;
 }
 
 .question-item a {
-    color: #007BFF; /* Link color */
-    text-decoration: none; /* No underline */
+    color: #007BFF;
+    text-decoration: none;
 }
 
 .question-item a:hover {
-    text-decoration: underline; /* Underline on hover */
+    text-decoration: underline;
+}
+
+.question-icon {
+    font-family: FontAwesome;
+    font-size: 22px;
+    color: #5CDB95;
+    margin-right: 10px;
 }
 
 /* No content message */
 .no-content {
-    text-align: center; /* Center the message if no content */
-    color: #888; /* Lighter text color */
+    text-align: center;
+    color: #888;
     font-size: 18px;
 }
 
-/* Button or link for posting new content */
+/* Post article button */
 .post-article {
     display: block;
     text-align: center;
-    margin-top: 20px;
-    padding: 10px 20px;
-    background-color: #5CDB95; /* Green background */
+    margin: 30px auto;
+    padding: 15px 30px;
+    background-color: #5CDB95;
     color: white;
     border: none;
-    border-radius: 5px;
-    text-decoration: none; /* Remove underline from link */
-    font-size: 16px;
+    border-radius: 25px;
+    text-decoration: none;
+    font-size: 18px;
+    font-weight: bold;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+    transition: background-color 0.3s, box-shadow 0.3s;
+    width: 80%;
 }
 
 .post-article:hover {
-    background-color: #53b485; /* Darker green on hover */
+    background-color: #3a9f6c;
+    box-shadow: 0 6px 15px rgba(0, 0, 0, 0.2);
+}
+
+/* Floating button */
+.floating-button {
+    position: fixed;
+    bottom: 30px;
+    right: 30px;
+    background-color: #5CDB95;
+    color: white;
+    border: none;
+    border-radius: 50%;
+    width: 60px;
+    height: 60px;
+    font-size: 30px;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+    cursor: pointer;
+    transition: background-color 0.3s, box-shadow 0.3s;
+}
+
+.floating-button:hover {
+    background-color: #3a9f6c;
+    box-shadow: 0 6px 15px rgba(0, 0, 0, 0.2);
+}
+
+/* Enhanced card styling */
+.card {
+    background: linear-gradient(145deg, #ffffff, #e6e6e6);
+    border-radius: 12px;
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
+    padding: 20px;
+    margin-bottom: 20px;
+    transition: transform 0.3s, box-shadow 0.3s;
+}
+
+.card:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 6px 20px rgba(0, 0, 0, 0.2);
+}
+
+.card-title {
+    font-size: 22px;
+    margin-bottom: 15px;
+    color: #05386B;
+}
+
+.card-description {
+    font-size: 16px;
+    color: #666;
+    line-height: 1.6;
+}
+
+/* Gradient button */
+.gradient-button {
+    display: inline-block;
+    padding: 10px 20px;
+    border-radius: 25px;
+    background: linear-gradient(145deg, #5CDB95, #05386B);
+    color: white;
+    text-decoration: none;
+    font-size: 16px;
+    font-weight: bold;
+    transition: background 0.3s, box-shadow 0.3s;
+}
+
+.gradient-button:hover {
+    background: linear-gradient(145deg, #3a9f6c, #05386B);
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
+}
+
+
+/* 自定义按钮样式 */
+.delete-btn {
+    background-color: transparent;
+    color: red;
+    border: none;
+    cursor: pointer;
+    text-decoration: underline;
+}
+
+.delete-btn:hover {
+    color: darkred;
+}
+
+/* 美化 Post Event 按钮并放置在右边 */
+.post-event-btn {
+    display: inline-block;
+    margin-top: 10px;
+    margin-left: auto;
+    padding: 10px 20px;
+    background: linear-gradient(145deg, #5CDB95, #05386B);
+    color: white;
+    border: none;
+    border-radius: 25px;
+    text-decoration: none;
+    font-size: 16px;
+    font-weight: bold;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+    transition: background 0.3s, box-shadow 0.3s;
+    float: right;
+}
+
+.post-event-btn:hover {
+    background: linear-gradient(145deg, #3a9f6c, #05386B);
+    box-shadow: 0 6px 15px rgba(0, 0, 0, 0.2);
 }
