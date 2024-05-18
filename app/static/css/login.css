@@ -106,18 +106,18 @@ body {
 /* Center the flashed messages */
 .flash-message {
     position: fixed;
-    top: 50%;
+    top: 30%; /* Adjust the percentage value to move it higher */
     left: 50%;
     transform: translate(-50%, -50%);
-    padding: 20px;
+    padding: 40px; /* Increase padding for a larger message box */
     background-color: #f0f0f0;
-    border: 1px solid #ccc;
-    border-radius: 5px;
+    border: 2px solid #ccc; /* Increase border thickness */
+    border-radius: 15px; /* Increase border-radius for rounded corners */
     text-align: center;
 }
 
 /* Style for bold and bigger flashed messages */
 .flash-message strong {
     font-weight: bold;
-    font-size: 24px; /* Adjust size as needed */
+    font-size: 40px; /* Increase font size for a bigger message */
 }
