@@ -9,32 +9,27 @@ body {
     background-image: linear-gradient(-20deg, #e9defa 0%, #fbfcdb 100%);
 }
 
-/*      part for navbar.css    */
-
-
+/* Part for navbar.css */
 .welcome {
     padding: 50px;
     text-align: center;
 }
 
-.welcome h1{
+.welcome h1 {
     font-size: 40px;
     font-family: 'Times New Roman', Times, serif;
 }
 
-.welcome p{
+.welcome p {
     font-size: 20px;
     font-family: 'Times New Roman', Times, serif;
-
 }
-
-
 
 .welcome h1, .welcome p, .about h2, .about p, footer {
     color: #05386B; /* Text color to match the nav bar for consistency */
 }
 
-.latest-article, .upcoming-events { 
+.latest-article, .upcoming-events {
     padding: 20px;
     text-align: center;
     border-top: 1px solid #eaeaea; /* subtle border to visually separate sections */
@@ -60,7 +55,6 @@ body {
     font-family: 'Times New Roman', Times, serif;
 }
 
-
 /* Additional responsive styling as needed for smaller screens */
 @media (max-width: 768px) {
     .latest-articles, .upcoming-events {
@@ -72,7 +66,6 @@ body {
     }
 }
 
-
 footer {
     background: #05386B;
     color: #fff;
@@ -80,45 +73,44 @@ footer {
     padding: 5px 0;
 }
 
-
-.all{
+.all {
     width: 600px;
-    height: 400px; 
+    height: 400px;
     padding: 7px;
     border: 1px solid #ccc;
     margin: 100px auto;
     position: relative;
-    overflow: hidden; 
-    margin-bottom: 200px; 
+    overflow: hidden;
+    margin-bottom: 200px;
 }
 
 .screen {
     width: 600px;
-    height: 400px; 
+    height: 400px;
     overflow: hidden;
     position: relative;
 }
 
-.screen li{
+.screen li {
     width: 600px;
-    height: 400px; 
+    height: 400px;
     float: left;
-    display: flex; 
-    justify-content: center; 
+    display: flex;
+    justify-content: center;
     align-items: center;
 }
 
-.screen ul{
+.screen ul {
     position: relative;
     left: 0;
     top: 0;
-    width: 3600px; 
-    list-style: none; 
-    margin: 0; 
-    padding: 0; 
+    width: 3600px;
+    list-style: none;
+    margin: 0;
+    padding: 0;
 }
 
-.screen ol{
+.screen ol {
     position: absolute;
     right: 10px;
     bottom: 10px;
@@ -126,12 +118,11 @@ footer {
     text-align: center;
 }
 
-
-.all ol li{
+.all ol li {
     float: left;
     width: 20px;
     height: 20px;
-    background:#fff;
+    background: #fff;
     border: 1px solid #ccc;
     margin-left: 10px;
     cursor: pointer;
@@ -139,35 +130,32 @@ footer {
     color: #ccc;
 }
 
-.all ol li.current{
+.all ol li.current {
     background-color: #05386B;
 }
 
-#arr{
+#arr {
     display: none;
 }
 
-#arr span{
-    width:40px;
+#arr span {
+    width: 40px;
     height: 40px;
     position: absolute;
     left: 5px;
     top: 50%;
     margin-top: -20px;
-    background:#000;
+    background: #000;
     cursor: pointer;
     line-height: 40px;
     text-align: center;
-    line-height: 40px;
     font-weight: bold;
-    font-weight:ºÚÌå;
-    font: size 30px;
     color: #fff;
     opacity: 0.3;
     border: 1px solid #fff;
 }
 
-#arr #right{
+#arr #right {
     right: 6px;
     left: auto;
 }
@@ -186,8 +174,6 @@ footer {
     line-height: 1.5em;
     color: #452c2c;
 }
-
-
 
 .go-corner1 {
     display: flex;
@@ -248,15 +234,12 @@ footer {
 .card1:hover .small-desc1 {
     transition: all 0.5s ease-out;
     color: rgba(255, 255, 255, 0.8);
-    
 }
 
 .card1:hover .card-title1 {
     transition: all 0.5s ease-out;
     color: #ffffff;
-
 }
-
 
 .card-title2 {
     color: #262626;
@@ -272,7 +255,6 @@ footer {
     line-height: 1.5em;
     color: #2c4530;
 }
-
 
 .go-corner2 {
     display: flex;
@@ -334,7 +316,6 @@ footer {
 .card2:hover .small-desc2 {
     transition: all 0.5s ease-out;
     color: rgba(255, 255, 255, 0.8);
-    
 }
 
 .card2:hover .card-title2 {
@@ -424,7 +405,6 @@ footer {
     color: #ffffff;
 }
 
-
 .card1, .card2 {
     margin-bottom: 20px; 
     float: left; 
@@ -435,14 +415,127 @@ footer {
     font-family: 'Times New Roman', Times, serif;
 }
 
-
 .card2 p {
     font-family: 'Times New Roman', Times, serif;
-
 }
 
-.card3 p{
+.card3 p {
     color: #1c0e0f;
     font-family: 'Times New Roman', Times, serif;
+}
 
+.dog-introduction {
+    text-align: center;
+    margin: 200px 0; 
+}
+
+.dog-cards {
+    display: flex;
+    justify-content: space-around;
+    flex-wrap: wrap;
+}
+
+.dog-card {
+    width: 22%;
+    background-color: #f8f9fa;
+    border: 1px solid #dee2e6;
+    border-radius: 8px;
+    margin: 10px;
+    padding: 15px;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+    text-align: center;
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.dog-card:hover {
+    transform: translateY(-10px);
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+}
+
+.dog-img {
+    width: 100%; /* Adjusts width to fit the card */
+    height: auto; /* Maintains aspect ratio */
+    border-radius: 8px 8px 0 0;
+    object-fit: cover; /* Ensures the image covers the specified dimensions */
+    aspect-ratio: 1 / 1; /* Ensures images are square */
+}
+
+.dog-info {
+    padding: 10px 0;
+}
+
+.dog-name {
+    font-size: 1.2em;
+    font-weight: bold;
+    margin: 10px 0 5px;
+}
+
+.dog-desc {
+    font-size: 0.9em;
+    color: #555;
+}
+
+
+.cat-introduction {
+    text-align: center;
+    margin: -100px 0; 
+    margin-bottom: 100px;
+}
+
+.cat-cards {
+    display: flex;
+    justify-content: space-around;
+    flex-wrap: wrap;
+}
+
+.cat-card {
+    width: 22%;
+    background-color: #f8f9fa;
+    border: 1px solid #dee2e6;
+    border-radius: 8px;
+    margin: 10px;
+    padding: 15px;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+    text-align: center;
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.cat-card:hover {
+    transform: translateY(-10px);
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+}
+
+.cat-img {
+    width: 100%; /* Adjusts width to fit the card */
+    height: auto; /* Maintains aspect ratio */
+    border-radius: 8px 8px 0 0;
+    object-fit: cover; /* Ensures the image covers the specified dimensions */
+    aspect-ratio: 1 / 1; /* Ensures images are square */
+}
+
+.cat-info {
+    padding: 10px 0;
+}
+
+.cat-name {
+    font-size: 1.2em;
+    font-weight: bold;
+    margin: 10px 0 5px;
+}
+
+.cat-desc {
+    font-size: 0.9em;
+    color: #555;
+}
+
+
+.cat-introduction h2 {
+    font-family: 'Times New Roman', Times, serif;
+    font-size: 30px;
+}
+
+.cat-introduction p {
+    font-family: 'Times New Roman', Times, serif;
+    font-size: 20px;
+    color: #05386B;
 }
