@@ -27,7 +27,7 @@ class UserModel(UserMixin, db.Model):
 
 @login_manager.user_loader
 def load_user(user_id):
-    return UserModel.query.get(int(user_id))
+    return UserModel.session.get(int(user_id))
 
 class QuestionModel(db.Model):
     __tablename__ = 'question'
