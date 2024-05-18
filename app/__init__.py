@@ -7,6 +7,7 @@ from app.models import UserModel
 from flask_login import LoginManager
 from app.blueprints import main
 
+
 def create_app(config_name=None, config_class=None):
     app = Flask(__name__)
     

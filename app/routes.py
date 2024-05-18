@@ -1,7 +1,7 @@
-from flask import render_template, request, redirect, url_for, flash, get_flashed_messages, session, jsonify
+from flask import render_template, request, redirect, url_for, flash, get_flashed_messages,session,jsonify
 from app.extensions import db
-from app.forms import LoginForm, StaffLoginForm
-from app.models import UserModel, QuestionModel, AnswerModel, EventModel, LikeModel, CommentModel
+from app.forms import LoginForm, StaffLoginForm,ResetPasswordRequestForm
+from app.models import UserModel, QuestionModel, AnswerModel, EventModel,LikeModel,CommentModel
 from flask_mail import Message
 from flask_login import logout_user, login_required, current_user, login_user
 from app.forms import RegistrationForm, QuestionForm, AnswerForm, EventForm
@@ -9,6 +9,12 @@ from sqlalchemy import select
 from urllib.parse import urlsplit
 from werkzeug.utils import secure_filename
 from .blueprints import main
+from app.email import send_password_reset_email
+from app.forms import ResetPasswordForm
+import sqlalchemy as sa
+from flask import current_app
+from app import mail
+import jwt
 import os
 
 @main.route('/')
@@ -220,3 +226,42 @@ def comment_event():
     db.session.commit()
 
     return jsonify({'message': 'Comment added successfully'}), 200
+
+@main.route('/reset_password/<token>', methods=['GET', 'POST'])
+def reset_password(token):
+    if current_user.is_authenticated:
+        return redirect(url_for('main.index'))
+    user = UserModel.verify_reset_password_token(token)
+    if not user:
+        return redirect(url_for('main.index'))
+    form = ResetPasswordForm()
+    if form.validate_on_submit():
+        user.set_password(form.password.data)
+        db.session.commit()
+        flash('Your password has been reset.')
+        return redirect(url_for('main.login'))
+    return render_template('reset_password.html', form=form)
+
+@main.route('/reset_password_request', methods=['GET', 'POST'])
+def reset_password_request():
+    if current_user.is_authenticated:
+        return redirect(url_for('main.index'))
+    form = ResetPasswordRequestForm()
+    if form.validate_on_submit():
+        user = db.session.scalar(
+            sa.select(UserModel).where(UserModel.email == form.email.data))
+        if user:
+            send_password_reset_email(user, mail)  # Pass the 'mail' object here
+        flash('Check your email for the instructions to reset your password')
+        return redirect(url_for('main.login'))
+    return render_template('reset_password_request.html',
+                           title='Reset Password', form=form)
+def send_password_reset_email(user, mail):
+    token = user.get_reset_password_token()
+    msg = Message(subject='[Microblog] Reset Your Password',
+                  sender=current_app.config['ADMINS'][0],
+                  recipients=[user.email])
+    msg.body = render_template('email/reset_password.txt', user=user, token=token)
+    msg.html = render_template('email/reset_password.html', user=user, token=token)
+    mail.send(msg)
+
