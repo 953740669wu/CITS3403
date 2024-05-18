@@ -3,35 +3,41 @@
 {% block title %}Pet Hotel Booking{% endblock %}
 
 {% block content %}
+    <script src="https://lf3-cdn-tos.bytecdntp.com/cdn/expire-1-M/jquery/3.6.0/jquery.min.js" type="application/javascript"></script>
+    <link rel="stylesheet" href="https://cdn.staticfile.org/layui/2.5.7/css/layui.css" type="text/css" />
 
+    <div style="text-align:center;margin:20px auto">
+        <h2 style="margin: auto; font-size: 42px; color: #000; font-family: 'Arial', sans-serif; text-shadow: 2px 2px 2px rgba(0, 0, 0, 0.2); letter-spacing: 2px; background: linear-gradient(to right, blue, rgb(0, 106, 255)); -webkit-background-clip: text; -webkit-text-fill-color: transparent;">All Events</h2>
 
-        <script src="https://lf3-cdn-tos.bytecdntp.com/cdn/expire-1-M/jquery/3.6.0/jquery.min.js" type="application/javascript"></script>
-        <link rel="stylesheet" href="https://cdn.staticfile.org/layui/2.5.7/css/layui.css" type="text/css" />
+    </div>
 
-        <div style="text-align:center;margin:20px auto">
-            <h2 style="margin:auto">All Events</h2>
-        </div>
-            {% for event in events %}
-        <div class="layui-card">
-            <div class="layui-card-header">
-                <h3>{{ event.title }}</h3>
-            </div>
-            <div class="layui-card-body">
-                <p><i class="layui-icon layui-icon-location"></i> Location: <span style="color: #009688;">{{ event.location }}</span></p>
-                <!--
-                <p><i class="layui-icon layui-icon-fire"></i> Description: <span style="color: #333;">{{ event.description }}</span></p>
-                -->
-                <p><i class="layui-icon layui-icon-username"></i> Author: <span style="color: #FF5722;">{{ event.author.username }}</span></p>
-                <p><i class="layui-icon layui-icon-time"></i> Create Time: <span style="color: #5FB878;">{{ event.create_time.strftime('%Y-%m-%d %H:%M:%S') }}</span></p>
-                <p><i class="layui-icon layui-icon-date"></i> Event Time: <span style="color: #FFB800;">{{ event.event_time.strftime('%Y-%m-%d %H:%M:%S') }}</span></p>
-                <div class="layui-btn-container" style="margin-top:10px">
-                    <a class="layui-btn layui-btn-sm layui-btn-success" href="/event/{{event.id}}">Details</a>
-                    <button class="layui-btn layui-btn-sm layui-btn-danger likeBtn" data-event-id="{{ event.id }}">Like</button>
-                    <button class="layui-btn layui-btn-sm layui-bg-gray commentBtn" data-event-id="{{ event.id }}">Comment</button>
+    {% if events %}
+        {% for event in events %}
+            <div class="layui-card">
+                <div class="layui-card-header">
+                    <h3>{{ event.title }}</h3>
+                </div>
+                <div class="layui-card-body">
+                    <p><i class="layui-icon layui-icon-location"></i> Location: <span style="color: #009688;">{{ event.location }}</span></p>
+                    <!--
+                    <p><i class="layui-icon layui-icon-fire"></i> Description: <span style="color: #333;">{{ event.description }}</span></p>
+                    -->
+                    <p><i class="layui-icon layui-icon-username"></i> Author: <span style="color: #FF5722;">{{ event.author.username }}</span></p>
+                    <p><i class="layui-icon layui-icon-time"></i> Create Time: <span style="color: #5FB878;">{{ event.create_time.strftime('%Y-%m-%d %H:%M:%S') }}</span></p>
+                    <p><i class="layui-icon layui-icon-date"></i> Event Time: <span style="color: #FFB800;">{{ event.event_time.strftime('%Y-%m-%d %H:%M:%S') }}</span></p>
+                    <div class="layui-btn-container" style="margin-top:10px">
+                        <a class="layui-btn layui-btn-sm layui-btn-success" href="/event/{{event.id}}">Details</a>
+                        <button class="layui-btn layui-btn-sm layui-btn-danger likeBtn" data-event-id="{{ event.id }}">Like</button>
+                        <button class="layui-btn layui-btn-sm layui-bg-gray commentBtn" data-event-id="{{ event.id }}">Comment</button>
+                    </div>
                 </div>
             </div>
+        {% endfor %}
+    {% else %}
+        <div style="text-align:center;margin:20px auto">
+            <p style="color: #555; font-style: italic; font-size: 20px;">No events found.</p>
         </div>
-            {% endfor %}
+    {% endif %}
 
     <script src="https://cdn.staticfile.org/layui/2.5.7/layui.js"></script>
     <script>
