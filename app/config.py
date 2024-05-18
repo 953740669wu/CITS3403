@@ -16,7 +16,7 @@ class Config:
     MAIL_USE_SSL = True
     
     MAIL_USERNAME = "wu953740669@gmail.com"
-    MAIL_PASSWORD = "mfrz kfhj mrgr ikje"
+    MAIL_PASSWORD = "efzd zwkd twvc snnf"
     FLASKY_MAIL_SUBJECT_PREFIX = "[Flasky]"
     ADMINS = ["wu953740669@gmail.com"]  # Add ADMINS here
 
