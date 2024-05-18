@@ -13,9 +13,22 @@ body {
 
 
 .welcome {
-    padding: 30px;
+    padding: 50px;
     text-align: center;
 }
+
+.welcome h1{
+    font-size: 40px;
+    font-family: 'Times New Roman', Times, serif;
+}
+
+.welcome p{
+    font-size: 20px;
+    font-family: 'Times New Roman', Times, serif;
+
+}
+
+
 
 .welcome h1, .welcome p, .about h2, .about p, footer {
     color: #05386B; /* Text color to match the nav bar for consistency */
@@ -30,6 +43,7 @@ body {
 .latest-article h2, .upcoming-events h2 {
     color: #05386B;
     margin-bottom: 15px;
+    font-family: 'Times New Roman', Times, serif;
 }
 
 #articles-container, #events-container {
@@ -43,6 +57,7 @@ body {
 /* Maintain consistency in the text color for content */
 .latest-article p, .upcoming-events p {
     color: #05386B;
+    font-family: 'Times New Roman', Times, serif;
 }
 
 
@@ -155,4 +170,279 @@ footer {
 #arr #right{
     right: 6px;
     left: auto;
+}
+
+.card-title1 {
+    color: #f60d0d;
+    font-size: 1.5em;
+    line-height: normal;
+    font-weight: 700;
+    margin-bottom: 0.5em;
+}
+
+.small-desc1 {
+    font-size: 1em;
+    font-weight: 400;
+    line-height: 1.5em;
+    color: #452c2c;
+}
+
+
+
+.go-corner1 {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    position: absolute;
+    width: 2em;
+    height: 2em;
+    overflow: hidden;
+    top: 0;
+    right: 0;
+    background: linear-gradient(135deg, #6293c8, #384c6c);
+    border-radius: 0 4px 0 32px;
+}
+
+.go-arrow1 {
+    margin-top: -4px;
+    margin-right: -4px;
+    color: white;
+    font-family: courier, sans;
+}
+
+.card1 {
+    display: block;
+    position: relative;
+    max-width: 450px;
+    max-height: 820px;
+    background-color: #f2f8f9;
+    border-radius: 10px;
+    padding: 2em 1.2em;
+    margin: 12px;
+    text-decoration: none;
+    z-index: 0;
+    overflow: hidden;
+    background: linear-gradient(to bottom, #c3e6ec, #a7d1d9);
+    margin-top: -100px;
+}
+
+.card1:before {
+    content: '';
+    position: absolute;
+    z-index: -1;
+    top: -16px;
+    right: -16px;
+    background: linear-gradient(135deg, #364a60, #384c6c);
+    height: 32px;
+    width: 32px;
+    border-radius: 32px;
+    transform: scale(1);
+    transform-origin: 50% 50%;
+    transition: transform 0.35s ease-out;
+}
+
+.card1:hover:before {
+    transform: scale(32);
+}
+
+.card1:hover .small-desc1 {
+    transition: all 0.5s ease-out;
+    color: rgba(255, 255, 255, 0.8);
+    
+}
+
+.card1:hover .card-title1 {
+    transition: all 0.5s ease-out;
+    color: #ffffff;
+
+}
+
+
+.card-title2 {
+    color: #262626;
+    font-size: 1.5em;
+    line-height: normal;
+    font-weight: 700;
+    margin-bottom: 0.5em;
+}
+
+.small-desc2 {
+    font-size: 1em;
+    font-weight: 400;
+    line-height: 1.5em;
+    color: #2c4530;
+}
+
+
+.go-corner2 {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    position: absolute;
+    width: 2em;
+    height: 2em;
+    overflow: hidden;
+    top: 0;
+    right: 0;
+    background: linear-gradient(135deg, #0bb652a7, #098a3f);
+    border-radius: 0 4px 0 32px;
+}
+
+.go-arrow2 {
+    margin-top: -4px;
+    margin-right: -4px;
+    color: white;
+    font-family: courier, sans;
+}
+
+.card2 {
+    display: block;
+    position: relative;
+    max-width: 450px;
+    max-height: 820px;
+    background-color: #f2f8f9;
+    border-radius: 10px;
+    padding: 2em 1.2em;
+    margin: 12px;
+    text-decoration: none;
+    z-index: 0;
+    overflow: hidden;
+    background: linear-gradient(to bottom, #ede99d, #c9f29b);
+    font-family: Arial, Helvetica, sans-serif;
+    margin-top: -100px;
+}
+
+.card2:before {
+    content: '';
+    position: absolute;
+    z-index: -1;
+    top: -16px;
+    right: -16px;
+    background: linear-gradient(135deg, #119242, #0bb569);
+    height: 32px;
+    width: 32px;
+    border-radius: 32px;
+    transform: scale(1);
+    transform-origin: 50% 50%;
+    transition: transform 0.35s ease-out;
+}
+
+.card2:hover:before {
+    transform: scale(32);
+}
+
+.card2:hover .small-desc2 {
+    transition: all 0.5s ease-out;
+    color: rgba(255, 255, 255, 0.8);
+    
+}
+
+.card2:hover .card-title2 {
+    transition: all 0.5s ease-out;
+    color: #ffffff;
+}
+
+.card-title3 {
+    color: #262626;
+    font-size: 1.5em;
+    line-height: normal;
+    font-weight: 700;
+    margin-bottom: 0.5em;
+}
+
+.small-desc3 {
+    font-size: 1em;
+    font-weight: 400;
+    line-height: 1.5em;
+    color: #2c4530;
+}
+
+.go-corner3 {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    position: absolute;
+    width: 2em;
+    height: 2em;
+    overflow: hidden;
+    top: 0;
+    right: 0;
+    background: linear-gradient(135deg, hsla(147, 53%, 3%, 0.655), #02160b);
+    border-radius: 0 4px 0 32px;
+}
+
+.go-arrow3 {
+    margin-top: -4px;
+    margin-right: -4px;
+    color: white;
+    font-family: courier, sans;
+}
+
+.card3 {
+    display: block;
+    position: relative;
+    max-width: 450px;
+    max-height: 820px;
+    background-color: #f2f8f9;
+    border-radius: 10px;
+    padding: 2em 1.2em;
+    margin: 12px;
+    text-decoration: none;
+    z-index: 0;
+    overflow: hidden;
+    background: linear-gradient(to bottom, #e76d89, #c44d56);
+    font-family: Arial, Helvetica, sans-serif;
+    margin-top: -100px;
+}
+
+.card3:before {
+    content: '';
+    position: absolute;
+    z-index: -1;
+    top: -16px;
+    right: -16px;
+    background: linear-gradient(135deg, #0e0f0e, #090c0b);
+    height: 32px;
+    width: 32px;
+    border-radius: 32px;
+    transform: scale(1);
+    transform-origin: 50% 50%;
+    transition: transform 0.35s ease-out;
+}
+
+.card3:hover:before {
+    transform: scale(32);
+}
+
+.card3:hover .small-desc3 {
+    transition: all 0.5s ease-out;
+    color: rgba(255, 255, 255, 0.8);
+}
+
+.card3:hover .card-title3 {
+    transition: all 0.5s ease-out;
+    color: #ffffff;
+}
+
+
+.card1, .card2 {
+    margin-bottom: 20px; 
+    float: left; 
+}
+
+.card1 p {
+    color: #1c0e0f;
+    font-family: 'Times New Roman', Times, serif;
+}
+
+
+.card2 p {
+    font-family: 'Times New Roman', Times, serif;
+
+}
+
+.card3 p{
+    color: #1c0e0f;
+    font-family: 'Times New Roman', Times, serif;
+
 }
