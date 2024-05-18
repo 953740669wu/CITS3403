@@ -4,6 +4,10 @@ from werkzeug.security import generate_password_hash, check_password_hash
 from datetime import datetime
 from sqlalchemy import Column, DateTime
 import hashlib
+import jwt
+import time
+from flask import current_app
+timestamp = time.time()
 
 class UserModel(UserMixin, db.Model):
     __tablename__ = 'user'
@@ -23,7 +27,21 @@ class UserModel(UserMixin, db.Model):
     def avatar(self, size=200):
         digest = hashlib.md5(self.email.lower().encode('utf-8')).hexdigest()
         return f'https://avatars.dicebear.com/api/identicon/{digest}.svg?size={size}'
+    
+    def get_reset_password_token(self, expires_in=600):
+        return jwt.encode(
+            {'reset_password': self.id, 'exp': time.time() + expires_in},
+            current_app.config['SECRET_KEY'],
+            algorithm='HS256')
 
+    @staticmethod
+    def verify_reset_password_token(token):
+        try:
+            id = jwt.decode(token, current_app.config['SECRET_KEY'],
+                            algorithms=['HS256'])['reset_password']
+        except:
+            return
+        return db.session.get(UserModel, id)
 
 @login_manager.user_loader
 def load_user(user_id):
