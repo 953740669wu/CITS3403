@@ -1,12 +1,11 @@
 import sys
 import os
 from flask import Flask, session, g
-from app.config import Config, DevelopmentConfig, TestingConfig, ProductionConfig
+from app.config import Config,DevelopmentConfig,TestingConfig,ProductionConfig
 from app.extensions import db, migrate, login_manager
+from app.models import UserModel
 from flask_login import LoginManager
-from flask_mail import Mail
-
-mail = Mail()
+from app.blueprints import main
 
 def create_app(config_name=None, config_class=None):
     app = Flask(__name__)
@@ -26,12 +25,11 @@ def create_app(config_name=None, config_class=None):
     migrate.init_app(app, db)
     login_manager.init_app(app)
     login_manager.login_view = 'main.login'
-    mail.init_app(app)
 
     from app.blueprints import main
     app.register_blueprint(main)
 
     with app.app_context():
-        from app import routes  # Ensure routes are imported within app context to avoid circular import
+        from app import routes
 
     return app
