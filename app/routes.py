@@ -176,7 +176,7 @@ def allowed_file(filename):
     ALLOWED_EXTENSIONS = {'png', 'jpg', 'jpeg', 'gif'}
     return '.' in filename and filename.rsplit('.', 1)[1].lower() in ALLOWED_EXTENSIONS
 def upload_image():
-    # 检查上传文件夹是否存在，不存在则创建
+
     if not os.path.exists(app.config['UPLOAD_FOLDER']):
         os.makedirs(app.config['UPLOAD_FOLDER'])
     if 'file' not in request.files:
@@ -216,46 +216,25 @@ def create_event():
 @main.route('/like_event/<int:event_id>', methods=['POST'])
 @login_required
 def like_event(event_id):
-    # 检查当前用户是否已经点赞过该活动
+
     existing_like = LikeModel.query.filter_by(event_id=event_id, user_id=current_user.id).first()
     if existing_like:
         return jsonify({'status': 'error', 'message': 'You have already liked this event.'}), 200
 
-    # 获取活动发布者的用户 ID
     event = EventModel.query.get_or_404(event_id)
     if event.author_id == current_user.id:
         return jsonify({'status': 'error', 'message': 'You cannot like your own event.'}), 200
 
-    # 创建点赞记录
+
     like = LikeModel(event_id=event_id, user_id=current_user.id)
     db.session.add(like)
     db.session.commit()
 
     return jsonify({'status': 'success', 'message': 'Event liked successfully.'})
-@main.route('/comment', methods=['POST'])
-@login_required
-def comment_event():
-    data = request.json
-    event_id = data.get('event_id')
-    content = data.get('content')
 
-    if not event_id or not content:
-        return jsonify({'error': 'Missing event_id or content'}), 200
-
-    # 检查当前用户是否已经评论过该活动
-    existing_comment = CommentModel.query.filter_by(event_id=event_id, user_id=current_user.id).first()
-    if existing_comment:
-        return jsonify({'status': 'error', 'message': 'You have already commented on this event.'}), 200
-
-    # 获取活动发布者的用户 ID
+@main.route('/event/<int:event_id>')
+def event_details(event_id):
     event = EventModel.query.get_or_404(event_id)
-    if event.author_id == current_user.id:
-        return jsonify({'status': 'error', 'message': 'You cannot comment on your own event.'}), 200
-
-    # 创建评论记录
-    comment = CommentModel(event_id=event_id, user_id=current_user.id, content=content)
-    db.session.add(comment)
-    db.session.commit()
-
-    return jsonify({'message': 'Comment added successfully'}), 200
+    comments = CommentModel.query.filter_by(event_id=event_id).all()  # 获取与特定事件相关的所有评论
+    return render_template('event_detail.html', event=event, comments=comments)
 
