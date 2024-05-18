@@ -8,6 +8,7 @@ from flask_mail import Mail
 
 mail = Mail()
 
+
 def create_app(config_name=None, config_class=None):
     app = Flask(__name__)
     

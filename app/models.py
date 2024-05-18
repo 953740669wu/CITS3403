@@ -1,4 +1,4 @@
-from app.extensions import db, login_manager
+from app.extensions import db, login_manager  # Remove 'app' import from here
 from flask_login import UserMixin
 from werkzeug.security import generate_password_hash, check_password_hash
 from datetime import datetime
@@ -7,7 +7,9 @@ import hashlib
 import jwt
 import time
 from flask import current_app
+
 timestamp = time.time()
+
 
 class UserModel(UserMixin, db.Model):
     __tablename__ = 'user'
@@ -42,6 +44,7 @@ class UserModel(UserMixin, db.Model):
         except:
             return
         return db.session.get(UserModel, id)
+
 
 @login_manager.user_loader
 def load_user(user_id):

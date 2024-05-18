@@ -264,3 +264,4 @@ def send_password_reset_email(user, mail):
     msg.body = render_template('email/reset_password.txt', user=user, token=token)
     msg.html = render_template('email/reset_password.html', user=user, token=token)
     mail.send(msg)
+
