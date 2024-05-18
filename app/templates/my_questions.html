@@ -3,6 +3,7 @@
 {% block title %}User Profile{% endblock %}
 
 {% block content %}
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css">
 <link rel="stylesheet" href="{{ url_for('static', filename='css/my_question.css') }}">
 <style>
 /* 自定义按钮样式 */
@@ -23,7 +24,7 @@
     <div class="profile-header">
         <img src="https://www.gravatar.com/avatar/{{ current_user.avatar_hash }}?d=identicon&s=100" alt="Avatar" class="avatar">
         <h1 class="user-name">User: {{ current_user.username }}</h1>
-        <a href="/create_event">Post Event</a>
+        <a href="/create_event" class="post-event-btn">Post Event</a>
     </div>
     <h2>Published Questions</h2>
     {% if questions %}
