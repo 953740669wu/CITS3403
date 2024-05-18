@@ -1,93 +1,101 @@
-<!DOCTYPE html>
-<html lang="en">
 {% extends "base.html" %}
 
-{% block title %}Pet Hotel Booking{% endblock %}
+{% block title %}create event{% endblock %}
 
 {% block content %}
 
-    <link rel="stylesheet" href="https://cdn.staticfile.org/layui/2.5.7/css/layui.css" type="text/css" />
-    <script type="text/javascript" src="https://cdn.staticfile.org/layui/2.5.7/layui.js">
-    </script>
-
-<body>
-    <div class="layui-container">
+    <!-- Bootstrap CSS -->
+    <link href="https://lf3-cdn-tos.bytecdntp.com/cdn/expire-1-M/bootstrap/5.1.3/css/bootstrap.min.css" type="text/css" rel="stylesheet" />
+    <!-- Summernote CSS -->
+    <link href="https://lf9-cdn-tos.bytecdntp.com/cdn/expire-1-M/summernote/0.8.20/summernote-bs5.min.css" type="text/css" rel="stylesheet" />
+    <link href="https://lf6-cdn-tos.bytecdntp.com/cdn/expire-1-M/bootstrap-datetimepicker/4.17.47/css/bootstrap-datetimepicker.min.css" type="text/css" rel="stylesheet" />
+    <script src="https://lf3-cdn-tos.bytecdntp.com/cdn/expire-1-M/jquery/3.6.0/jquery.min.js" type="application/javascript"></script>
+    <script src="https://lf26-cdn-tos.bytecdntp.com/cdn/expire-1-M/moment.js/2.29.1/moment.min.js" type="application/javascript"></script>
+    <!-- Popper.js -->
+    <script src="https://lf9-cdn-tos.bytecdntp.com/cdn/expire-1-M/popper.js/2.10.2/umd/popper.min.js"></script>
+<link href="https://lf26-cdn-tos.bytecdntp.com/cdn/expire-1-M/flatpickr/4.6.9/flatpickr.min.css" type="text/css" rel="stylesheet" />
+<script src="https://lf6-cdn-tos.bytecdntp.com/cdn/expire-1-M/flatpickr/4.6.9/flatpickr.min.js" type="application/javascript"></script>
+    <div class="container">
         <div style="text-align:center;margin:20px auto">
-        <h2 style="margin:auto">Create Event</h2>
+            <h2>Create Event</h2>
         </div>
-        <div class="layui-row">
-            <div class="layui-col-md6 layui-col-md-offset3">
-                <form class="layui-form" method="POST" action="">
+        <div class="row">
+            <div class="col-md-6 offset-md-3">
+                <form method="POST" action="">
                     {{ form.hidden_tag() }}
-                    <div class="layui-form-item">
-                        <label class="layui-form-label">{{ form.title.label }}</label>
-                        <div class="layui-input-block">
-                            {{ form.title(class="layui-input") }}
-                        </div>
+                    <div class="mb-3">
+                        <label for="title" class="form-label">{{ form.title.label }}</label>
+                        {{ form.title(class="form-control") }}
                     </div>
-                    <div class="layui-form-item">
-                        <label class="layui-form-label">{{ form.location.label }}</label>
-                        <div class="layui-input-block">
-                            {{ form.location(class="layui-input") }}
-                        </div>
+                    <div class="mb-3">
+                        <label for="location" class="form-label">{{ form.location.label }}</label>
+                        {{ form.location(class="form-control") }}
                     </div>
-                    <div class="layui-form-item">
-                        <label class="layui-form-label">{{ form.description.label }}</label>
-                        <div class="layui-input-block">
-                            <textarea class="layui-textarea" id="description" name="description"></textarea>
-                        </div>
+                    <div class="mb-3">
+                        <label for="description" class="form-label">{{ form.description.label }}</label>
+                        <textarea class="form-control" id="description" name="description"></textarea>
                     </div>
-                    <div class="layui-form-item">
-                        <label class="layui-form-label">{{ form.event_time.label }}</label>
-                        <div class="layui-input-block">
-                            {{ form.event_time(id="event_time", class="layui-input") }}
-                        </div>
+                    <div class="mb-3">
+                        <label for="event_time" class="form-label">{{ form.event_time.label }}</label>
+                        {{ form.event_time(id="event_time",class="form-control") }}
+
                     </div>
-                    <div class="layui-form-item">
-                        <div class="layui-input-block">
-                            {{ form.submit(class="layui-btn") }}
-                        </div>
-                    </div>
+                    <button type="submit" class="btn btn-primary">Submit</button>
                 </form>
             </div>
         </div>
     </div>
+
+    <!-- Bootstrap JS (optional, only if needed) -->
+    <script src="https://lf3-cdn-tos.bytecdntp.com/cdn/expire-1-M/bootstrap/5.1.3/js/bootstrap.min.js" type="application/javascript"></script>
+    <!-- Summernote JS -->
+    <script src="https://lf3-cdn-tos.bytecdntp.com/cdn/expire-1-M/summernote/0.8.20/summernote-bs5.min.js" type="application/javascript"></script>
     <script>
-        layui.use(['form', 'laydate', 'layedit'], function(){
-            var form = layui.form;
-            var laydate = layui.laydate;
-            var layedit = layui.layedit;
-            
-            // Initialize date and time picker
-            laydate.render({
-                elem: '#event_time',
-                type: 'datetime',
-                format: 'yyyy-MM-dd HH:mm:ss'
-            });
-            layedit.set({
-                uploadImage: {
-                    url: '/upload_image', // Specify the upload image interface
-                    type: 'POST' // Default is post
-                }
-            });
-
-            // Initialize the layedit editor
-            var descriptionIndex = layedit.build('description', {
-                tool: [
-                    'strong', 'italic', 'underline', 'del', '|',
-                    'left', 'center', 'right', '|',
-                    'link', 'unlink', 'image'
+        $(document).ready(function() {
+            $('#description').summernote({
+                placeholder: 'Enter description here...',
+                height: 150,
+                toolbar: [
+                    ['style', ['bold', 'italic', 'underline', 'clear']],
+                    ['font', ['strikethrough', 'superscript', 'subscript']],
+                    ['para', ['ul', 'ol', 'paragraph']],
+                    ['view', ['fullscreen', 'codeview']]
                 ]
-
             });
 
-            // Override form submission to include layedit content
-            form.on('submit', function(){
-                var content = layedit.getContent(descriptionIndex);
-                document.getElementById('description').value = content;
-                return true;
+            flatpickr("#event_time", {
+                enableTime: true,  // 启用时间选择
+                dateFormat: "Y-m-d H:i:S",  // 日期时间格式
+                time_24hr: true,  // 使用 24 小时制
+                // 可根据需要添加其他选项
             });
+
+            $('form').submit(function(event) {
+                // 阻止默认的表单提交行为
+                event.preventDefault();
+                
+                // 获取表单数据
+                var formData = $(this).serialize();
+                
+                // 发送 AJAX POST 请求
+                $.ajax({
+                    type: 'POST',
+                    url: '/create_event',  // 根据你的后端路由设置
+                    data: formData,
+                    success: function(response) {
+                        // 如果服务器返回成功响应，可以在这里处理成功逻辑
+                        // 例如显示成功消息、重定向页面等
+                        console.log('Event created successfully');
+                        window.location.href = '/'; // 重定向到首页
+                    },
+                    error: function(error) {
+                        // 如果服务器返回错误响应，可以在这里处理错误逻辑
+                        console.error('Error creating event:', error);
+                        // 可以显示错误消息给用户
+                    }
+                });
+            });
+            
         });
     </script>
-</body>
 {% endblock %}
