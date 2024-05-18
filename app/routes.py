@@ -44,12 +44,14 @@ def login():
             
             # Logic for successful customer login
             login_user(user)
+            flash('Login successful!', 'success')  # Flash message here
             next_page = request.args.get('next')
             if not next_page or urlsplit(next_page).netloc != '':
                 next_page = url_for('main.index')
             return redirect(next_page)
 
     return render_template('login.html', form=customer_login_form)
+
 @main.route('/sign_up', methods=['GET', 'POST'])
 def sign_up():
     if current_user.is_authenticated:
@@ -61,10 +63,11 @@ def sign_up():
         user.set_password(form.password.data)
         db.session.add(user)
         db.session.commit()
-        flash('Registration successful, please log in.', 'success')
+        flash('Registration successful, please log in.', 'success')  # Flash message here
         return redirect(url_for('main.login'))
     
     return render_template('sign_up.html', title='Register', form=form)
+
 #Logout route
 @main.route('/logout')
 def logout():
@@ -255,3 +258,4 @@ def comment_event():
     db.session.commit()
 
     return jsonify({'message': 'Comment added successfully'}), 200
+

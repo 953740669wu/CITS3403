@@ -102,3 +102,22 @@ body {
     border-radius: 50%;
     margin-bottom: 20px;
 }
+
+/* Center the flashed messages */
+.flash-message {
+    position: fixed;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    padding: 20px;
+    background-color: #f0f0f0;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    text-align: center;
+}
+
+/* Style for bold and bigger flashed messages */
+.flash-message strong {
+    font-weight: bold;
+    font-size: 24px; /* Adjust size as needed */
+}
