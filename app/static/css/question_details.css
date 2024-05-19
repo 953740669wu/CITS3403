@@ -98,3 +98,127 @@
 .btn-primary:hover {
     background-color: #05386B;
 }
+
+body {
+    position: relative;
+}
+
+.back-btn-container {
+    position: fixed;
+    top: 100px; /* Adjusted from 50px to 70px to move the button further down */
+    left: 20px;
+    z-index: 10;
+}
+
+.go-back-btn {
+    display: inline-block;
+    font-size: 16px; /* Reduced font size */
+    padding: 8px 16px; /* Reduced padding */
+    color: #fff;
+    background-color: #007bff;
+    border: none;
+    border-radius: 8px;
+    text-decoration: none;
+    transition: background-color 0.3s ease, transform 0.3s ease;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+}
+
+.go-back-btn:hover {
+    background-color: #0056b3;
+    transform: scale(1.05);
+}
+
+.go-back-btn:active {
+    background-color: #00408d;
+    transform: scale(0.98);
+}
+
+.article-box {
+    margin: 20px auto;
+    padding: 20px;
+    border: 1px solid #ccc;
+    border-radius: 8px;
+    background-color: #f9f9f9;
+}
+
+.article-detail {
+    margin: 10px 0;
+}
+
+.answer-form-wrapper {
+    margin: 20px auto;
+}
+
+.answer-form {
+    margin: 20px auto;
+    padding: 20px;
+    border: 1px solid #ccc;
+    border-radius: 8px;
+    background-color: #f9f9f9;
+}
+
+.form-group textarea {
+    width: 100%;
+    height: 100px;
+    padding: 10px;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+}
+
+.btn-primary {
+    display: inline-block;
+    padding: 10px 20px;
+    font-size: 16px;
+    color: #fff;
+    background-color: #007bff;
+    border: none;
+    border-radius: 4px;
+    text-decoration: none;
+    transition: background-color 0.3s ease, transform 0.3s ease;
+}
+
+.btn-primary:hover {
+    background-color: #0056b3;
+    transform: scale(1.05);
+}
+
+.btn-primary:active {
+    background-color: #00408d;
+    transform: scale(0.98);
+}
+
+.comments {
+    margin: 20px auto;
+    padding: 20px;
+    border: 1px solid #ccc;
+    border-radius: 8px;
+    background-color: #f9f9f9;
+}
+
+.comment {
+    margin: 10px 0;
+    padding: 10px;
+    border-bottom: 1px solid #ccc;
+}
+
+.btn-delete {
+    display: inline-block;
+    padding: 10px 20px;
+    font-size: 16px;
+    color: #fff;
+    background-color: #dc3545;
+    border: none;
+    border-radius: 4px;
+    text-decoration: none;
+    transition: background-color 0.3s ease, transform 0.3s ease;
+}
+
+.btn-delete:hover {
+    background-color: #c82333;
+    transform: scale(1.05);
+}
+
+.btn-delete:active {
+    background-color: #bd2130;
+    transform: scale(0.98);
+}

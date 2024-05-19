@@ -16,6 +16,11 @@ Article Detail
     <p class="article-detail"><strong>Published Date:</strong> {{ question.create_time.strftime('%Y-%m-%d') }}</p>
     <p class="article-detail"><strong>Author:</strong> {{ question.author.username }}</p>
 </div>
+<!-- Go Back Button -->
+<div class="back-btn-container">
+    <a href="{{ url_for('main.forum_page') }}" class="go-back-btn">Go Back to Forum</a>
+</div>
+
 
 
 <!-- Answer Form -->
