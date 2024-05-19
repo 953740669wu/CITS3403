@@ -1,28 +1,31 @@
-# Pet Forum Project
+# Pet Forum Web Application
 
-## Overview
-This project is a comprehensive online forum designed for pet lovers and owners. It serves as a dynamic space where users can share stories, ask questions about pet care, organize and announce pet-related events, and interact through various community features.
+## Purpose
+This web application serves as a dynamic forum for pet lovers, providing a platform for sharing stories, asking questions, and organizing pet-related events. It's designed to facilitate community interaction and support among pet owners, leveraging a user-friendly interface with functionalities such as event postings, comment sections, and user profiles.
 
-## Key Features
-- **User Authentication**: Secure sign up, log in, and password recovery functionalities.
-- **Interactive Content**: Users can post questions, share stories, and organize events.
-- **Community Engagement**: Users can like, comment, and follow discussions or events.
-- **Event Management**: Tools for creating, managing, and promoting events within the community.
+## Team Members
 
-## Technical Stack
-- **Flask Framework**: Utilizes Flask to provide a robust server-side platform for routing, session management, and backend logic.
-- **Database Integration**: Incorporates SQLAlchemy for database operations, facilitating data storage for user profiles, posts, and event details.
-- **Frontend Technologies**: Employs HTML, CSS, JavaScript, and Bootstrap for a responsive and user-friendly interface.
+| UWA ID     | Name        | GitHub Username    |
+|------------|-------------|--------------------|
+| 22935319   | Junyi Wu    | [953740669wu] |
+| 22823318   | Xincheng Li | [xinchengli1112]|
+| 23701834   | Shuai Shao  | [ShuaiShao20010902] |
+| 23950897   | Yunhao Jin  | [YunhaoJin02]|
 
-## Agile Development Approach
-- The project is developed using Agile methodologies to ensure iterative development and continuous integration.
-- GitHub is employed for version control, feature branches, pull requests, and code reviews to maintain code quality and track progress.
-- Regular meetings and discussions are held to prioritize tasks and address challenges, ensuring alignment with project goals and user needs.
+## Launch Instructions
+To launch the application:
+1. Clone the repository
+2. Navigate to the project directory
+3. Set up virtual environment properly
+4. Install dependencies: `pip install -r requirements.txt`
+5. Start the server: `flask run`
+6. Access the application via `http://localhost:5000` in your web browser.
 
-## Getting Started
-To set up the project locally:
-1. Clone the repository.
-2. Set up virtual environment
-3. Install dependencies: `pip install -r requirements.txt`.
-4. Run the Flask server: `flask run`.
-5. Access the application through your web browser at `localhost:5000`.
+## Testing Instructions
+To run the tests:
+1. Ensure you are in the project root directory.
+2. Run the tests using the command as follows:
+3. `python -m unittest tests.test_models`
+4. `python -m unittest tests.test_routes`
+
+These instructions provide a comprehensive guide to getting the application up and running on a local development environment and ensuring its functionality through tests.
