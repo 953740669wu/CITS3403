@@ -17,7 +17,7 @@ To launch the application:
 1. Clone the repository
 2. Navigate to the project directory
 3. Set up virtual environment properly
-4. Install dependencies: `pip install -r requirements.txt`
+4. Install dependencies: `pip install -r requirement.txt`
 5. Start the server: `flask run`
 6. Access the application via `http://localhost:5000` in your web browser.
 
