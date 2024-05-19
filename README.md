@@ -12,15 +12,19 @@ This web application serves as a dynamic forum for pet lovers, providing a platf
 | 23701834   | Shuai Shao  | [ShuaiShao20010902](https://github.com/ShuaiShao20010902) |
 | 23950897   | Yunhao Jin  | [YunhaoJin02](https://github.com/YunhaoJin02) |
 
-
 ## Launch Instructions
 To launch the application:
 1. Clone the repository
 2. Navigate to the project directory
-3. Set up virtual environment properly
+3. Set up virtual environment properly: for instance, using MacOS. Perform following command: `python3 -m venv venv` and then `source venv/bin/activate`
 4. Install dependencies: `pip install -r requirement.txt`
-5. Start the server: `flask run`
-6. Access the application via `http://localhost:5000` in your web browser.
+6. Start the server: `flask run`
+7. Access the application via `http://localhost:5000` in your web browser.
+
+## Solution for possible issue with database
+- `flask db init` initializes the migration scripts.
+- `flask db migrate` detects changes in the models and creates migration scripts.
+- `flask db upgrade` applies the migration scripts to the database.
 
 ## Testing Instructions
 To run the tests:
