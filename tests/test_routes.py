@@ -4,7 +4,7 @@ from datetime import datetime
 from flask import url_for
 from app import create_app, db
 from app.models import UserModel, QuestionModel, EventModel, LikeModel
-
+from unittest.mock import patch
 class BasicTests(unittest.TestCase):
 
     def setUp(self):
@@ -85,7 +85,6 @@ class BasicTests(unittest.TestCase):
 
     def test_like_event(self):
         """Test liking an event."""
-        # Log in as other user to create the event
         self.login('otheruser', 'password123')
         event = EventModel(
             title='Test Event',
@@ -98,13 +97,37 @@ class BasicTests(unittest.TestCase):
         db.session.commit()
         self.logout()
 
-        # Log in as test user to like the event
+        
         self.login('testuser', 'password123')
         response = self.client.post(f'/like_event/{event.id}', follow_redirects=True)
         self.assertEqual(response.status_code, 200)
         self.assertIn(b'Event liked successfully.', response.data)
         like = LikeModel.query.filter_by(event_id=event.id, user_id=self.user.id).first()
         self.assertIsNotNone(like)
+
+    @patch('app.routes.send_password_reset_email')
+    def test_reset_password_request(self, mock_send_email):
+        """Test requesting a password reset."""
+        response = self.client.post('/reset_password_request', data={
+            'email': 'test@example.com'
+        })
+        self.assertEqual(response.status_code, 302)  
+        self.assertTrue(mock_send_email.called)  
+    def test_reset_password(self):
+        """Test resetting the password."""
+        with self.app_context:
+            token = self.user.get_reset_password_token()
+        
+        response = self.client.get(url_for('main.reset_password', token=token))
+        self.assertEqual(response.status_code, 200)
+
+        response = self.client.post(url_for('main.reset_password', token=token), data={
+            'password': 'newpassword',
+            'password2': 'newpassword'
+        })
+        self.assertEqual(response.status_code, 302)  
+        user = db.session.get(UserModel, self.user.id)
+        self.assertTrue(user.check_password('newpassword'))
 
 if __name__ == '__main__':
     unittest.main()
