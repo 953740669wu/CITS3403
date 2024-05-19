@@ -7,10 +7,10 @@ This web application serves as a dynamic forum for pet lovers, providing a platf
 
 | UWA ID     | Name        | GitHub Username    |
 |------------|-------------|--------------------|
-| 22935319   | Junyi Wu    | [953740669wu] |
-| 22823318   | Xincheng Li | [xinchengli1112]|
-| 23701834   | Shuai Shao  | [ShuaiShao20010902] |
-| 23950897   | Yunhao Jin  | [YunhaoJin02]|
+| 22935319   | Junyi Wu    | 953740669wu |
+| 22823318   | Xincheng Li | xinchengli1112|
+| 23701834   | Shuai Shao  | ShuaiShao20010902 |
+| 23950897   | Yunhao Jin  | YunhaoJin02|
 
 ## Launch Instructions
 To launch the application:
