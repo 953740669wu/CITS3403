@@ -5,110 +5,96 @@
     flex-direction: column;
 }
 
-/* Center align the article title */
 .article-title {
     text-align: center;
-    font-size: 35px; 
-    font-family:'Times New Roman', Times, serif;
+    font-size: 35px;
+    font-family: 'Times New Roman', Times, serif;
 }
 
-/* Center align the article meta information */
 .article-meta {
     text-align: center;
 }
 
-
-/* Center align the delete article button */
 .btn-delete {
     display: block;
     margin-top: 20px;
     text-align: center;
 }
 
-/* Center alignment for specific elements */
 .center {
     text-align: center;
-    color: #05386B; 
-    font-size: 35px; 
-    font-family:'Times New Roman', Times, serif;
+    color: #05386B;
+    font-size: 35px;
+    font-family: 'Times New Roman', Times, serif;
 }
 
-
-/* Center align the article content */
 .article-content {
     text-align: center;
-    color: #05386B; 
-    font-size: 20px; 
-    font-family:'Times New Roman', Times, serif;
+    color: #05386B;
+    font-size: 20px;
+    font-family: 'Times New Roman', Times, serif;
+    width: 70%; 
+    margin: 0 auto; 
+    text-align: left;
+    white-space: pre-wrap;
 }
-
 
 .article-detail {
     text-align: center;
-    color: #05386B; 
-    font-size: 13px; 
-    font-family:'Times New Roman', Times, serif;
+    color: #05386B;
+    font-size: 13px;
+    font-family: 'Times New Roman', Times, serif;
     margin-top: 20px;
 }
-
-
 
 .article-box {
     border: 1px solid black;
     padding: 20px;
     border-radius: 10px;
-    max-width: 500px; 
-    margin: 0 auto; 
+    max-width: 500px;
+    margin: 0 auto;
 }
 
-
-/* Center align the answer form */
 .answer-form {
     text-align: center;
     color: #05386B;
-    font-family:'Times New Roman', Times, serif; 
+    font-family: 'Times New Roman', Times, serif;
+    width: 20%; 
+    margin: 0 auto; 
 }
 
-
 .form-control {
-    height: 250px; 
-    width:500px;
+    height: 75px; 
+    width: 70%;
     border-radius: 10px;
     font-size: 20px;
     color: #05386B;
-    font-family:'Times New Roman', Times, serif; 
+    font-family: 'Times New Roman', Times, serif;
 }
 
-
-/* Center align the comments section */
 .comments {
-    margin-top: 50px;
+    margin-top: 30px; 
     text-align: center;
     color: #05386B;
-    font-family:'Times New Roman', Times, serif; 
+    font-family: 'Times New Roman', Times, serif;
 }
-
 
 .answer-form-wrapper {
-    margin-top: 40px; 
+    margin-top: 20px; 
 }
-
 
 .btn-primary {
-    padding: 20px;
-    background-color: #5CDB95; /* Green shade for buttons */
+    padding: 15px; 
+    background-color: #5CDB95;
     border: none;
     border-radius: 5px;
-    font-size: 18px; /* Larger font for better readability */
-    color: white; /* White text on the button */
+    font-size: 18px;
+    color: white;
     cursor: pointer;
     transition: background-color 0.3s;
-    width: auto; /* Set button width to auto to fit content */
-
+    width: auto;
 }
-
 
 .btn-primary:hover {
     background-color: #05386B;
 }
-
