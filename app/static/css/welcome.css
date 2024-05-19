@@ -259,7 +259,7 @@ footer {
 }
 
 .card1:hover:before, .card2:hover:before, .card3:hover:before {
-    transform: scale(32);
+    transform: scale(52);
 }
 
 .card1:hover .small-desc1, .card2:hover .small-desc2, .card3:hover .small-desc3 {
